@@ -1,0 +1,1 @@
+{\n  "name": "contact-excel-backend",\n  "version": "1.0.0",\n  "main": "server.js",\n  "dependencies": {\n    "@octokit/rest": "^20.0.0",\n    "express": "^4.18.0",\n    "xlsx": "^0.18.5",\n    "dotenv": "^16.0.0"\n  }\n}
