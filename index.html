@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to My Homepage</title>
+    <title>Cyriac Panackal Consulting</title>
+    <link rel="icon" href="profilepic.jpg">
     <style>
         body {
             margin: 0;
@@ -12,36 +13,46 @@
             color: #222;
             min-height: 100vh;
         }
-        .container {
-            max-width: 600px;
-            margin: 80px auto;
-            padding: 32px;
-            background: #fff;
-            border-radius: 16px;
-            box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+        header {
+            background: #3a6cf6;
+            color: #fff;
+            padding: 24px 0 16px 0;
             text-align: center;
         }
         .profile-pic {
-            width: 140px;
-            height: 140px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid #3a6cf6;
-            margin-bottom: 24px;
+            border: 4px solid #fff;
+            margin-bottom: 12px;
             box-shadow: 0 2px 8px rgba(58,108,246,0.15);
         }
-        h1 {
-            color: #3a6cf6;
-            margin-bottom: 8px;
+        nav {
+            margin: 16px 0;
         }
-        .name {
-            font-size: 1.8em;
-            font-weight: bold;
-            margin-bottom: 12px;
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 18px;
+            font-weight: 500;
+            font-size: 1.08em;
+            transition: text-shadow 0.2s;
         }
-        p {
-            font-size: 1.2em;
+        nav a:hover {
+            text-shadow: 0 2px 8px #fff;
+        }
+        section {
+            max-width: 700px;
+            margin: 36px auto 0 auto;
+            padding: 24px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.07);
             margin-bottom: 24px;
+        }
+        h1, h2 {
+            color: #3a6cf6;
         }
         .btn {
             display: inline-block;
@@ -52,21 +63,171 @@
             border-radius: 8px;
             font-size: 1em;
             text-decoration: none;
+            margin-top: 18px;
+            cursor: pointer;
             transition: background 0.2s;
         }
         .btn:hover {
             background: #274bb5;
         }
+        /* Modal styles */
+        .modal-bg {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(58,108,246,0.13);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 99;
+        }
+        .modal {
+            background: #fff;
+            padding: 32px 28px;
+            border-radius: 14px;
+            box-shadow: 0 4px 32px rgba(58,108,246,0.11);
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+        }
+        .modal-close {
+            position: absolute;
+            right: 18px; top: 12px;
+            font-size: 1.6em;
+            color: #888;
+            cursor: pointer;
+        }
+        .success-msg {
+            color: green;
+            margin: 12px 0 8px 0;
+        }
+        .export-btn {
+            margin-top: 20px;
+            background: #00b16a;
+        }
+        .export-btn:hover {
+            background: #007a47;
+        }
+        @media (max-width: 600px) {
+            section { padding: 18px; }
+            .modal { padding: 18px 8px; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <header>
         <img src="profilepic.jpg" alt="Profile Picture" class="profile-pic">
-        <div class="name">Cyriac Panackal</div>
-        <h1>Hello, I'm Cyriac!</h1>
-        <p>Welcome to my homepage. I'm passionate about technology, migration projects, and software development.<br>
-        Explore my projects or connect with me to learn more!</p>
-        <a class="btn" href="#about">Learn More</a>
+        <h1>Cyriac Panackal Consulting</h1>
+        <nav>
+            <a href="#about">About Me</a>
+            <a href="#services">Services</a>
+            <a href="#impressum">Impressum</a>
+            <button class="btn" onclick="showModal()">Contact Me</button>
+        </nav>
+    </header>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>
+            Hello, I'm Cyriac! I'm passionate about technology, migration projects, and software development.<br>
+            With years of experience in consulting and project management, I help organizations navigate digital transformation and migration challenges.<br>
+            Let's connect!
+        </p>
+    </section>
+    <section id="services">
+        <h2>Services</h2>
+        <ul>
+            <li>IT Migration Consulting</li>
+            <li>Project Management & Planning</li>
+            <li>Custom Software Solutions</li>
+            <li>Training & Workshops</li>
+        </ul>
+    </section>
+    <section id="impressum">
+        <h2>Impressum</h2>
+        <p>
+            Cyriac Panackal Consulting<br>
+            Address: Musterstraße 1, 12345 Beispielstadt<br>
+            Email: info@cyriacpanackal-consulting.de<br>
+            VAT-ID: DE123456789<br>
+            <br>
+            Responsible for content: Cyriac Panackal
+        </p>
+    </section>
+
+    <!-- Modal Form -->
+    <div class="modal-bg" id="modal-bg">
+        <div class="modal">
+            <span class="modal-close" onclick="hideModal()">&times;</span>
+            <h2>Contact Form</h2>
+            <form id="contactForm" autocomplete="off" onsubmit="submitForm(event)">
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name" required style="width:100%;padding:9px;border-radius:4px;border:1px solid #ccc;"><br><br>
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required style="width:100%;padding:9px;border-radius:4px;border:1px solid #ccc;"><br><br>
+                <label for="message">Message:</label><br>
+                <textarea id="message" name="message" required style="width:100%;padding:9px;border-radius:4px;border:1px solid #ccc;"></textarea><br><br>
+                <button class="btn" type="submit">Send</button>
+            </form>
+            <div class="success-msg" id="success-msg"></div>
+            <button class="btn export-btn" onclick="exportToExcel()" id="export-btn" style="display:none;">Export Submissions to Excel</button>
+        </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script>
+        // Modal logic
+        function showModal() {
+            document.getElementById('modal-bg').style.display = 'flex';
+            document.getElementById('success-msg').textContent = '';
+            document.getElementById('contactForm').reset();
+        }
+        function hideModal() {
+            document.getElementById('modal-bg').style.display = 'none';
+        }
+
+        // Save submissions in localStorage
+        function getResponses() {
+            const data = localStorage.getItem('contactFormResponses');
+            return data ? JSON.parse(data) : [];
+        }
+
+        function saveResponse(response) {
+            const responses = getResponses();
+            responses.push(response);
+            localStorage.setItem('contactFormResponses', JSON.stringify(responses));
+        }
+
+        function submitForm(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (!name || !email || !message) return;
+
+            saveResponse({name, email, message, date: new Date().toISOString()});
+            document.getElementById('success-msg').textContent = 'Thank you! Your message was saved.';
+            document.getElementById('export-btn').style.display = 'inline-block';
+            document.getElementById('contactForm').reset();
+        }
+
+        // Show export button if responses exist
+        window.onload = function() {
+            if (getResponses().length > 0) {
+                document.getElementById('export-btn').style.display = 'inline-block';
+            }
+        };
+
+        // Export to Excel
+        function exportToExcel() {
+            const responses = getResponses();
+            if (responses.length === 0) return;
+
+            const ws = XLSX.utils.json_to_sheet(responses);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'Responses');
+            XLSX.writeFile(wb, 'contact_form_responses.xlsx');
+        }
+    </script>
 </body>
 </html>
