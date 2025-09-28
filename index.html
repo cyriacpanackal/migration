@@ -8,8 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #1e40af; /* footer blue everywhere */
-      --primary-light: #3b82f6;
+      --primary: #1e40af; /* footer blue */
       --bg: #f3f6fd;
       --text: #1d1d1f;
       --max-width: 1100px;
@@ -147,13 +146,6 @@
       box-shadow: 0 4px 14px rgba(0,0,0,0.2);
     }
 
-    iframe {
-      width: 100%;
-      border: none;
-      border-radius: 14px;
-      box-shadow: 0 3px 14px rgba(0,0,0,0.1);
-    }
-
     footer {
       text-align: center;
       padding: 40px 20px;
@@ -169,6 +161,53 @@
       transition: opacity 0.2s;
     }
     footer a:hover { opacity: 0.7; }
+
+    /* Popup Form */
+    .form-popup {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+    .form-container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 14px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+    .form-container h3 {
+      margin-bottom: 16px;
+      color: var(--primary);
+    }
+    .form-container input,
+    .form-container textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1em;
+      font-family: inherit;
+    }
+    .form-container textarea {
+      resize: vertical;
+      height: 120px;
+    }
+    .btn-cancel {
+      background: #aaa;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 24px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    .btn-cancel:hover { background: #888; }
 
     /* Mobile */
     @media (max-width: 700px) {
@@ -209,7 +248,7 @@
           Let’s connect and build solutions that matter.
         </p>
       </div>
-      <img src="profilepic.jpg" alt="About Me Image" />
+      <img src="aboutpic.jpg" alt="About Me Image" />
     </div>
   </section>
 
@@ -227,26 +266,74 @@
     <h2>Impressum</h2>
     <p>
       Cyriac Panackal Consulting<br />
-      Address: Lütterzer Str 2, 36041 Fulda<br />
-      Email: cyriac@panackal.de<br />
-      Telephone: 01744705695<br /><br />
+      Address: Musterstraße 1, 12345 Beispielstadt<br />
+      Email: info@cyriacpanackal-consulting.de<br />
+      VAT-ID: DE123456789<br /><br />
       Responsible for content: Cyriac Panackal
     </p>
   </section>
 
   <section id="contact">
     <h2>Contact Me</h2>
-    <iframe src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true" height="700">Loading…</iframe>
-    <a href="mailto:info@cyriacpanackal-consulting.de" class="btn-main">Or Email Me Directly</a>
+    <button class="btn-main" onclick="openForm()">Send a Message</button>
   </section>
+
+  <!-- Popup Form -->
+  <div id="contactForm" class="form-popup">
+    <div class="form-container">
+      <h3>Send me a message</h3>
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <textarea id="message" placeholder="Your Message" required></textarea>
+      <button type="button" class="btn-main" onclick="sendEmail()">Send</button>
+      <button type="button" class="btn-cancel" onclick="closeForm()">Close</button>
+    </div>
+  </div>
 
   <footer>
     <p>© 2025 Cyriac Panackal Consulting</p>
     <p>
       <a href="https://linkedin.com">LinkedIn</a> |
-      <a href="https://github.com">GitHub</a> |
       <a href="mailto:info@cyriacpanackal-consulting.de">Email</a>
     </p>
   </footer>
+
+  <!-- EmailJS Script -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function() {
+      emailjs.init("cyriac"); // replace with your EmailJS User ID
+    })();
+
+    function openForm() {
+      document.getElementById("contactForm").style.display = "flex";
+    }
+    function closeForm() {
+      document.getElementById("contactForm").style.display = "none";
+    }
+    function sendEmail() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (!name || !email || !message) {
+        alert("Please fill out all fields.");
+        return;
+      }
+
+      emailjs.send("service_sysbf2f", "template_cwxhl09", {
+        from_name: name,
+        from_email: email,
+        message: message
+      })
+      .then(function() {
+        alert("Message sent successfully!");
+        closeForm();
+      }, function(error) {
+        alert("Failed to send message. Please try again.");
+        console.error(error);
+      });
+    }
+  </script>
 </body>
 </html>
