@@ -5,46 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cyriac Panackal Consulting</title>
   <link rel="icon" href="profilepic.jpg" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #3a6cf6;
-      --primary-dark: #274bb5;
-      --bg: #f5f7fc;
+      --primary: #2563eb; /* modern blue */
+      --primary-light: #3b82f6;
+      --primary-dark: #1e40af;
+      --bg: #f3f6fd;
       --text: #1d1d1f;
+      --max-width: 1000px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Poppins', sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
+    /* Sticky Nav */
     header {
-      background: linear-gradient(135deg, #3a6cf6, #5f85ff);
+      position: sticky;
+      top: 0;
+      background: rgba(37, 99, 235, 0.9);
+      backdrop-filter: blur(12px);
       color: #fff;
       text-align: center;
-      padding: 48px 20px 32px 20px;
-      position: relative;
+      padding: 28px 20px 20px 20px;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
     header h1 {
-      font-size: 2.2em;
+      font-size: 2.4em;
       margin-bottom: 12px;
     }
     .profile-pic {
-      width: 130px;
-      height: 130px;
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
       object-fit: cover;
       border: 5px solid #fff;
       margin-bottom: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      transition: transform 0.3s;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25), 0 0 15px rgba(59,130,246,0.5);
+      transition: transform 0.4s;
     }
-    .profile-pic:hover {
-      transform: scale(1.05);
-    }
+    .profile-pic:hover { transform: scale(1.07) rotate(2deg); }
 
     nav {
       margin-top: 16px;
@@ -52,19 +57,19 @@
     nav a {
       color: #fff;
       text-decoration: none;
-      margin: 0 16px;
+      margin: 0 18px;
       font-weight: 600;
-      font-size: 1.05em;
-      transition: opacity 0.2s;
+      font-size: 1.1em;
+      transition: opacity 0.25s;
     }
     nav a:hover { opacity: 0.8; }
     nav .btn {
       background: #fff;
       color: var(--primary);
-      padding: 10px 20px;
-      border-radius: 24px;
+      padding: 10px 22px;
+      border-radius: 26px;
       font-weight: 600;
-      transition: background 0.2s, color 0.2s;
+      transition: background 0.3s, color 0.3s;
     }
     nav .btn:hover {
       background: var(--primary-dark);
@@ -72,61 +77,83 @@
     }
 
     section {
-      max-width: 850px;
-      margin: 48px auto;
-      padding: 32px;
+      max-width: var(--max-width);
+      margin: 60px auto;
+      padding: 40px;
       background: #fff;
       border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-      transition: transform 0.2s;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease-out;
     }
-    section:hover { transform: translateY(-3px); }
+    section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
     h2 {
       color: var(--primary);
-      font-size: 1.8em;
-      margin-bottom: 16px;
+      font-size: 1.9em;
+      margin-bottom: 18px;
     }
     ul {
       list-style: none;
       padding-left: 0;
     }
     ul li {
-      padding: 8px 0;
+      padding: 10px 0;
+      font-size: 1.05em;
       border-bottom: 1px solid #eee;
     }
 
     .btn-main {
       display: inline-block;
-      margin-top: 18px;
-      padding: 12px 28px;
-      background: var(--primary);
+      margin-top: 22px;
+      padding: 14px 34px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       color: #fff;
       font-weight: 600;
       text-decoration: none;
-      border-radius: 30px;
-      transition: background 0.2s;
+      border-radius: 32px;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
     .btn-main:hover {
-      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
     }
 
     iframe {
       width: 100%;
       border: none;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      border-radius: 14px;
+      box-shadow: 0 3px 14px rgba(0,0,0,0.1);
     }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: var(--primary-dark);
+      color: #fff;
+      margin-top: 60px;
+    }
+    footer a {
+      color: #fff;
+      margin: 0 10px;
+      font-size: 1.2em;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    footer a:hover { opacity: 0.7; }
 
     /* Mobile */
     @media (max-width: 700px) {
-      header h1 { font-size: 1.7em; }
-      nav a { margin: 0 10px; font-size: 0.95em; }
-      section { margin: 24px 12px; padding: 24px; }
+      header h1 { font-size: 1.9em; }
+      .profile-pic { width: 120px; height: 120px; }
+      nav a { margin: 0 10px; font-size: 1em; }
+      section { margin: 30px 14px; padding: 28px; }
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
   </style>
 </head>
 <body>
@@ -173,9 +200,28 @@
 
   <section id="contact">
     <h2>Contact Me</h2>
-    <!-- Replace YOUR_FORM_ID with your actual Google Form ID -->
-    <iframe src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true" height="800">Loading…</iframe>
-    <a href="mailto:info@cyriacpanackal-consulting.de" class="btn-main">Or Email Me Directly</a>
+    <iframe src=" https://docs.google.com/forms/d/1qNmod_aoGGTD3uIy1ZTZrVJzqe6TdXKgJNFaT0n93II/viewform?embedded=true" height="700">Loading…</iframe>
+    <a href="mailto:cyriac@panackal.de" class="btn-main">Or Email Me Directly</a>
   </section>
+
+  <footer>
+    <p>© 2025 Cyriac Panackal Consulting</p>
+    <p>
+      <a href="https://www.linkedin.com/in/cyriac-panackal-b62a0ab6/">LinkedIn</a> |
+      <a href="https://github.com">GitHub</a> |
+      <a href="mailto:cyriac@panackal.de">Email</a>
+    </p>
+  </footer>
+
+  <script>
+    // Fade-in effect on scroll
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("show");
+      });
+    }, { threshold: 0.2 });
+    sections.forEach(sec => observer.observe(sec));
+  </script>
 </body>
 </html>
