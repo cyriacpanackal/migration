@@ -14,6 +14,7 @@
       --text: #1d1d1f;
       --max-width: 1100px;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
 
@@ -24,24 +25,29 @@
       background: rgba(30, 64, 175, 0.95);
       backdrop-filter: blur(10px);
       color: #fff;
-      padding: 16px 20px;
+      padding: 12px 20px;
       z-index: 1000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       box-shadow: 0 3px 12px rgba(0,0,0,0.15);
     }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 18px;
-      font-weight: 600;
-      font-size: 1.05em;
-      transition: opacity 0.25s;
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: var(--max-width);
+      margin: auto;
     }
-    nav a:hover { opacity: 0.8; }
-    nav .btn { background: #fff; color: var(--primary); padding: 8px 18px; border-radius: 24px; font-weight: 600; transition: background 0.3s, color 0.3s; }
-    nav .btn:hover { background: var(--primary); color: #fff; }
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .nav-links a { color: #fff; text-decoration: none; font-weight: 600; white-space: nowrap; }
+    .nav-links a:hover { opacity: 0.8; }
+    .menu-toggle {
+      display: none;
+      font-size: 1.8em;
+      cursor: pointer;
+    }
 
     /* Hero */
     .hero {
@@ -135,14 +141,13 @@
 
     /* Responsive */
     @media (max-width: 700px) {
+      .menu-toggle { display: block; }
+      .nav-links { display: none; flex-direction: column; background: var(--primary); position: absolute; top: 60px; right: 10px; width: 180px; border-radius: 8px; padding: 10px; }
+      .nav-links.show { display: flex; }
       .hero { flex-direction: column; }
       .hero img { width: 160px; height: 160px; }
       .about-content { flex-direction: column; text-align: center; }
-      .about-content img {
-        max-width: 80%; 
-        margin: 20px auto;
-        display: block;
-      }
+      .about-content img { max-width: 70%; margin: 20px auto; display: block; }
       .about-text { width: 100%; }
       section { margin: 30px 14px; padding: 28px; }
     }
@@ -157,14 +162,18 @@
   </style>
 </head>
 <body>
+
   <!-- Header -->
   <header>
-    <nav>
-      <a href="#about">About Me</a>
-      <a href="#services">Services</a>
-      <a href="#impressum">Impressum</a>
-      <a href="javascript:void(0);" class="btn" onclick="openForm()">Contact</a>
-    </nav>
+    <div class="nav-container">
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About Me</a>
+        <a href="#services">Services</a>
+        <a href="#impressum">Impressum</a>
+        <a href="javascript:void(0);" class="btn" onclick="openForm()">Contact</a>
+      </div>
+    </div>
   </header>
 
   <!-- Hero -->
@@ -195,7 +204,7 @@
     <h2>Services</h2>
     <ul>
       <li>💻 IT Migration Consulting</li>
-      <li>📊 Project Management
+      <li>📊 Project Management & Planning</li>
       <li>⚙️ Custom Software Solutions</li>
       <li>🎓 Training & Workshops</li>
     </ul>
