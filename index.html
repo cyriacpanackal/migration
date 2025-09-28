@@ -1,67 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyriac Panackal Consulting</title>
-    <link rel="icon" href="profilepic.jpg">
-    <style>
-        body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6fb; color: #222; min-height: 100vh;}
-        header { background: #3a6cf6; color: #fff; padding: 24px 0 16px 0; text-align: center;}
-        .profile-pic { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(58,108,246,0.15);}
-        nav { margin: 16px 0;}
-        nav a { color: #fff; text-decoration: none; margin: 0 18px; font-weight: 500; font-size: 1.08em; transition: text-shadow 0.2s;}
-        nav a:hover { text-shadow: 0 2px 8px #fff;}
-        section { max-width: 700px; margin: 36px auto 0 auto; padding: 24px; background: #fff; border-radius: 16px; box-shadow: 0 2px 16px rgba(0,0,0,0.07); margin-bottom: 24px;}
-        h1, h2 { color: #3a6cf6;}
-        .btn { display: inline-block; padding: 12px 32px; background: #3a6cf6; color: #fff; border: none; border-radius: 8px; font-size: 1em; text-decoration: none; margin-top: 18px; cursor: pointer; transition: background 0.2s;}
-        .btn:hover { background: #274bb5;}
-        @media (max-width: 600px) { section { padding: 18px; } }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cyriac Panackal Consulting</title>
+  <link rel="icon" href="profilepic.jpg" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #3a6cf6;
+      --primary-dark: #274bb5;
+      --bg: #f5f7fc;
+      --text: #1d1d1f;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #3a6cf6, #5f85ff);
+      color: #fff;
+      text-align: center;
+      padding: 48px 20px 32px 20px;
+      position: relative;
+    }
+    header h1 {
+      font-size: 2.2em;
+      margin-bottom: 12px;
+    }
+    .profile-pic {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid #fff;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+    .profile-pic:hover {
+      transform: scale(1.05);
+    }
+
+    nav {
+      margin-top: 16px;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 16px;
+      font-weight: 600;
+      font-size: 1.05em;
+      transition: opacity 0.2s;
+    }
+    nav a:hover { opacity: 0.8; }
+    nav .btn {
+      background: #fff;
+      color: var(--primary);
+      padding: 10px 20px;
+      border-radius: 24px;
+      font-weight: 600;
+      transition: background 0.2s, color 0.2s;
+    }
+    nav .btn:hover {
+      background: var(--primary-dark);
+      color: #fff;
+    }
+
+    section {
+      max-width: 850px;
+      margin: 48px auto;
+      padding: 32px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: transform 0.2s;
+    }
+    section:hover { transform: translateY(-3px); }
+    h2 {
+      color: var(--primary);
+      font-size: 1.8em;
+      margin-bottom: 16px;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    ul li {
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .btn-main {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 12px 28px;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: background 0.2s;
+    }
+    .btn-main:hover {
+      background: var(--primary-dark);
+    }
+
+    iframe {
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    /* Mobile */
+    @media (max-width: 700px) {
+      header h1 { font-size: 1.7em; }
+      nav a { margin: 0 10px; font-size: 0.95em; }
+      section { margin: 24px 12px; padding: 24px; }
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <img src="profilepic.jpg" alt="Profile Picture" class="profile-pic">
-        <h1>Cyriac Panackal Consulting</h1>
-        <nav>
-            <a href="#about">About Me</a>
-            <a href="#services">Services</a>
-            <a href="#impressum">Impressum</a>
-            <a href="#contact" class="btn">Contact Me</a>
-        </nav>
-    </header>
-    <section id="about">
-        <h2>About Me</h2>
-        <p>
-            Hello, I'm Cyriac! I'm passionate about technology, migration projects, and software development.<br>
-            With years of experience in consulting and project management, I help organizations navigate digital transformation and migration challenges.<br>
-            Let's connect!
-        </p>
-    </section>
-    <section id="services">
-        <h2>Services</h2>
-        <ul>
-            <li>IT Migration Consulting</li>
-            <li>Project Management & Planning</li>
-            <li>Custom Software Solutions</li>
-            <li>Training & Workshops</li>
-        </ul>
-    </section>
-    <section id="impressum">
-        <h2>Impressum</h2>
-        <p>
-            Cyriac Panackal Consulting<br>
-            Address: Musterstraße 1, 12345 Beispielstadt<br>
-            Email: info@cyriacpanackal-consulting.de<br>
-            VAT-ID: DE123456789<br>
-            <br>
-            Responsible for content: Cyriac Panackal
-        </p>
-    </section>
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <!-- Google Form embed below. Replace YOUR_FORM_ID with your actual Google Form ID! -->
-        <iframe src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true" width="640" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-    </section>
+  <header>
+    <img src="profilepic.jpg" alt="Profile Picture" class="profile-pic" />
+    <h1>Cyriac Panackal Consulting</h1>
+    <nav>
+      <a href="#about">About Me</a>
+      <a href="#services">Services</a>
+      <a href="#impressum">Impressum</a>
+      <a href="#contact" class="btn">Contact</a>
+    </nav>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      Hello, I'm Cyriac! I’m passionate about technology, migration projects, and software development.<br><br>
+      With years of experience in consulting and project management, I help organizations navigate digital transformation and migration challenges.<br><br>
+      Let’s connect and build solutions that matter.
+    </p>
+  </section>
+
+  <section id="services">
+    <h2>Services</h2>
+    <ul>
+      <li>💻 IT Migration Consulting</li>
+      <li>📊 Project Management & Planning</li>
+      <li>⚙️ Custom Software Solutions</li>
+      <li>🎓 Training & Workshops</li>
+    </ul>
+  </section>
+
+  <section id="impressum">
+    <h2>Impressum</h2>
+    <p>
+      Cyriac Panackal Consulting<br />
+      Address: Musterstraße 1, 12345 Beispielstadt<br />
+      Email: info@cyriacpanackal-consulting.de<br />
+      VAT-ID: DE123456789<br /><br />
+      Responsible for content: Cyriac Panackal
+    </p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <!-- Replace YOUR_FORM_ID with your actual Google Form ID -->
+    <iframe src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true" height="800">Loading…</iframe>
+    <a href="mailto:info@cyriacpanackal-consulting.de" class="btn-main">Or Email Me Directly</a>
+  </section>
 </body>
 </html>
