@@ -119,28 +119,23 @@ footer a:hover { opacity:0.7; }
   .hero { flex-direction:column; }
   .hero img { width:160px; height:160px; }
 
-  .about-content {
+    .about-content {
     display: flex;
-    flex-direction: column;  /* stack elements vertically */
-    align-items: flex-start;  /* text starts left */
-    position: relative;       /* allow absolute positioning for image */
-     padding-top: 100px;  
+    flex-direction: row;      /* horizontal layout */
+    align-items: flex-start;
+    gap: 10px;
   }
 
   .about-content img {
-    position: absolute;       /* place image at top-right */
-    top: 0;
-    right: 0;
-    width: 90px;
-    height: 90px;
+    flex-shrink: 0;           /* prevent shrinking */
+    width: 80px;              /* small but visible */
+    height: 80px;
     border-radius: 12px;
     object-fit: cover;
-    margin: 0;
   }
 
   .about-text {
-    width: 100%;
-    padding-top: 0;           /* leave space if needed */
+    flex: 1;                  /* text takes remaining space */
     font-size: 0.95em;
   }
 
@@ -219,13 +214,13 @@ html { scroll-behavior:smooth; }
 migration, integration, and international recruitment. I support
 individuals and organizations in navigating complex migration
 processes, adapting to new cultural environments, and attracting and
-retaining international talent.
+retaining international talent. <br>
 
 Drawing on experience across both public and private sectors, I
 provide tailored consulting, workshops, and training focused on
 intercultural communication, integration strategies, and effective
 international recruitment practices. My goal is to create smooth,
-inclusive transitions that benefit both people and organizations.
+inclusive transitions that benefit both people and organizations.<br>
 
 I combine practical expertise with a personalized approach, helping
 clients achieve sustainable results in a global and culturally diverse
