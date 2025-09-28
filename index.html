@@ -8,9 +8,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #2563eb;
+      --primary: #1e40af; /* footer blue everywhere */
       --primary-light: #3b82f6;
-      --primary-dark: #1e40af;
       --bg: #f3f6fd;
       --text: #1d1d1f;
       --max-width: 1100px;
@@ -27,7 +26,7 @@
     header {
       position: sticky;
       top: 0;
-      background: rgba(37, 99, 235, 0.95);
+      background: rgba(30, 64, 175, 0.95);
       backdrop-filter: blur(10px);
       color: #fff;
       padding: 16px 20px;
@@ -55,7 +54,7 @@
       transition: background 0.3s, color 0.3s;
     }
     header nav .btn:hover {
-      background: var(--primary-dark);
+      background: var(--primary);
       color: #fff;
     }
 
@@ -63,7 +62,7 @@
     .hero {
       text-align: center;
       padding: 60px 20px 40px 20px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      background: linear-gradient(135deg, var(--primary), #162f7d);
       color: #fff;
     }
     .hero img {
@@ -73,7 +72,7 @@
       object-fit: cover;
       border: 6px solid #fff;
       margin-bottom: 20px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3), 0 0 20px rgba(59,130,246,0.6);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3), 0 0 20px rgba(30,64,175,0.6);
       transition: transform 0.4s;
     }
     .hero img:hover { transform: scale(1.08) rotate(2deg); }
@@ -96,13 +95,32 @@
       background: #fff;
       border-radius: 20px;
       box-shadow: 0 6px 24px rgba(0,0,0,0.08);
-      scroll-margin-top: 90px; /* fix for sticky header */
+      scroll-margin-top: 90px;
     }
     h2 {
       color: var(--primary);
       font-size: 1.9em;
       margin-bottom: 18px;
     }
+
+    /* About section with image */
+    .about-content {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .about-content img {
+      flex: 1;
+      max-width: 380px;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    }
+    .about-text {
+      flex: 2;
+      min-width: 280px;
+    }
+
     ul {
       list-style: none;
       padding-left: 0;
@@ -117,7 +135,7 @@
       display: inline-block;
       margin-top: 22px;
       padding: 14px 34px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      background: linear-gradient(135deg, var(--primary), #162f7d);
       color: #fff;
       font-weight: 600;
       text-decoration: none;
@@ -139,7 +157,7 @@
     footer {
       text-align: center;
       padding: 40px 20px;
-      background: var(--primary-dark);
+      background: var(--primary);
       color: #fff;
       margin-top: 60px;
     }
@@ -158,6 +176,8 @@
       .hero img { width: 160px; height: 160px; }
       section { margin: 30px 14px; padding: 28px; }
       header nav a { margin: 0 10px; font-size: 0.95em; }
+      .about-content { flex-direction: column; text-align: center; }
+      .about-content img { max-width: 100%; }
     }
 
     html { scroll-behavior: smooth; }
@@ -181,11 +201,16 @@
 
   <section id="about">
     <h2>About Me</h2>
-    <p>
-      Hello, I'm Cyriac! I’m passionate about technology, migration projects, and software development.<br><br>
-      With years of experience in consulting and project management, I help organizations navigate digital transformation and migration challenges.<br><br>
-      Let’s connect and build solutions that matter.
-    </p>
+    <div class="about-content">
+      <div class="about-text">
+        <p>
+          Hello, I'm Cyriac! I’m passionate about technology, migration projects, and software development.<br><br>
+          With years of experience in consulting and project management, I help organizations navigate digital transformation and migration challenges.<br><br>
+          Let’s connect and build solutions that matter.
+        </p>
+      </div>
+      <img src="aboutpic.jpg" alt="About Me Image" />
+    </div>
   </section>
 
   <section id="services">
@@ -202,9 +227,9 @@
     <h2>Impressum</h2>
     <p>
       Cyriac Panackal Consulting<br />
-      Address: Musterstraße 1, 12345 Beispielstadt<br />
-      Email: info@cyriacpanackal-consulting.de<br />
-      VAT-ID: DE123456789<br /><br />
+      Address: Lütterzer Str 2, 36041 Fulda<br />
+      Email: cyriac@panackal.de<br />
+      Telephone: 01744705695<br /><br />
       Responsible for content: Cyriac Panackal
     </p>
   </section>
