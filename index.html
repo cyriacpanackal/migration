@@ -53,29 +53,31 @@ h2 { color: var(--primary); font-size:1.9em; margin-bottom:18px; }
 
 /* About */
 .about-content img:hover { transform: translateY(-6px); }
-  /* About Me section */
+  /* Desktop About Me – keep previous flex layout */
 .about-content {
-  position: relative;
-  padding: 20px;
-  min-height: 150px; /* ensure enough space for image */
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-/* Image on top-right */
+/* About image */
 .about-content img {
-  position: absolute;
-  top: 20px;      /* distance from top of section */
-  right: 20px;    /* distance from right */
-  width: 120px;   /* adjust size */
-  height: 120px;
-  border-radius: 12px;
-  object-fit: cover;
+  flex-shrink: 0;
+  max-width: 380px;
+  border-radius: 16px;
   box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  transition: transform 0.3s;
 }
 
-/* Text flows underneath */
+.about-content img:hover {
+  transform: translateY(-6px);
+}
+
+/* About text */
 .about-text {
-  margin-right: 140px; /* leave space for image on right */
-  font-size: 1em;
+  flex: 2;
+  min-width: 280px;
 }
 
 /* Services */
@@ -117,20 +119,24 @@ footer a:hover { opacity:0.7; }
   .hero { flex-direction:column; }
   .hero img { width:160px; height:160px; }
 
-   .about-content {
-    display: block; /* stack container normally */
-    position: relative;
-    padding: 0 10px;
+  .about-content {
+    display: flex;
+    flex-direction: column;  /* stack content */
+    align-items: flex-start; /* align text left */
+    gap: 12px;
   }
 
-   .about-content img {
-    top: 15px;
-    right: 15px;
-    width: 80px;
-    height: 80px;
+  .about-content img {
+    align-self: flex-end;   /* top-right of container */
+    width: 90px;
+    height: 90px;
+    margin: 0;              /* no extra margin */
   }
+
   .about-text {
-    margin-right: 0;  /* full width on small screens */
+    width: 100%;            /* take full width under image */
+    margin-top: 0;
+    font-size: 0.95em;
   }
 
   section { margin:30px 14px; padding:28px; }
@@ -197,9 +203,21 @@ html { scroll-behavior:smooth; }
   <h2>About Me</h2>
   <div class="about-content">
     <div class="about-text">
-      <p>Hello, I'm Cyriac! I’m passionate about technology, migration projects, and software development.<br><br>
-      With years of experience in consulting and project management, I help organizations navigate digital transformation and migration challenges.<br><br>
-      Let’s connect and build solutions that matter.</p>
+      <p>Hello, I'm Cyriac Panackal, a freelance consultant specializing in
+migration, integration, and international recruitment. I support
+individuals and organizations in navigating complex migration
+processes, adapting to new cultural environments, and attracting and
+retaining international talent.
+
+Drawing on experience across both public and private sectors, I
+provide tailored consulting, workshops, and training focused on
+intercultural communication, integration strategies, and effective
+international recruitment practices. My goal is to create smooth,
+inclusive transitions that benefit both people and organizations.
+
+I combine practical expertise with a personalized approach, helping
+clients achieve sustainable results in a global and culturally diverse
+context.</p>
       <button class="btn-main" onclick="openForm()">Contact Me</button>
     </div>
     <img src="profilepic.jpg" alt="About Me Image">
