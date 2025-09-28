@@ -73,11 +73,28 @@ footer a:hover { opacity:0.7; }
   .nav-links.show { display:flex; }
   .hero { flex-direction:column; }
   .hero img { width:160px; height:160px; }
-  .about-content { flex-direction:column; text-align:center; }
-  .about-content img { max-width:70%; margin:20px auto; display:block; }
-  .about-text { width:100%; }
+   .about-content {
+    flex-direction: row;      /* horizontal layout */
+    flex-wrap: nowrap;        /* no wrap */
+    align-items: flex-start;  /* top align text & image */
+    justify-content: flex-start;
+    gap: 12px;
+    text-align: left;
+  }
+  .about-content img {
+    max-width: 80px;          /* small image */
+    height: 80px;
+    border-radius: 12px;
+    margin-top: 4px;          /* align vertically with text */
+    flex-shrink: 0;
+  }
+  .about-text {
+    flex: 1;
+    font-size: 0.95em;
+  }
   section { margin:30px 14px; padding:28px; }
 }
+
 @media (max-width: 400px) {
   .hero img { width:120px; height:120px; }
   .hero h1 { font-size:1.8em; }
@@ -112,7 +129,6 @@ html { scroll-behavior:smooth; }
   </div>
 </div>
 
-<!-- About Me -->
 <section id="about">
   <h2>About Me</h2>
   <div class="about-content">
@@ -122,9 +138,10 @@ html { scroll-behavior:smooth; }
       Let’s connect and build solutions that matter.</p>
       <button class="btn-main" onclick="openForm()">Contact Me</button>
     </div>
-    <img src="profilepic.jpg" alt="About Me Image">
+    <img src="aboutpic.jpg" alt="About Me Image">
   </div>
 </section>
+
 
 <!-- Services -->
 <section id="services">
