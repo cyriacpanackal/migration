@@ -128,14 +128,23 @@ footer a:hover { opacity:0.7; }
   color: #333;
   font-size: 0.95em;
 }
+  /* Desktop: show all text, hide Read More button */
+@media (min-width: 701px) {
+  #about-full {
+    display: block !important;
+  }
+  #readMoreBtn {
+    display: none;
+  }
+}
 
 /* Responsive */
 @media (max-width: 700px) {
   .hero { flex-direction:column; }
   .hero img { width:160px; height:160px; }
-   .about-content {
+ .about-content {
     display: flex;
-    flex-direction: row; /* horizontal layout */
+    flex-direction: row;
     align-items: flex-start;
     gap: 10px;
   }
@@ -148,8 +157,12 @@ footer a:hover { opacity:0.7; }
   }
 
   .about-text {
-    flex: 1; /* text takes remaining width */
+    flex: 1;
     font-size: 0.95em;
+  }
+
+  #about-full {
+    display: none; /* hidden until Read More is clicked */
   }
 
   section { margin:30px 14px; padding:28px; }
@@ -219,30 +232,41 @@ html { scroll-behavior:smooth; }
   </div>
 </div>
 
-<section id="about">
+
+  <section id="about">
   <h2>About Me</h2>
   <div class="about-content">
     <div class="about-text">
-      <p>Hello, I'm Cyriac Panackal, a freelance consultant specializing in
+      <!-- Short text always shown -->
+      <p id="about-short">Hello, I'm Cyriac Panackal, a freelance consultant </p>
+      
+      <!-- Full text (hidden on mobile, visible on desktop) -->
+      <p id="about-full">
+       specializing in
 migration, integration, and international recruitment. I support
 individuals and organizations in navigating complex migration
 processes, adapting to new cultural environments, and attracting and
-retaining international talent. <br>
+retaining international talent. <br> <br>
 
 Drawing on experience across both public and private sectors, I
 provide tailored consulting, workshops, and training focused on
 intercultural communication, integration strategies, and effective
 international recruitment practices. My goal is to create smooth,
-inclusive transitions that benefit both people and organizations.<br>
+inclusive transitions that benefit both people and organizations.<br> <br>
 
 I combine practical expertise with a personalized approach, helping
 clients achieve sustainable results in a global and culturally diverse
-context.</p>
+context.
+      </p>
+      
+      <!-- Button only for mobile -->
+      <button id="readMoreBtn" class="btn-main" onclick="toggleReadMore()">Read More</button>
       <button class="btn-main" onclick="openForm()">Contact Me</button>
     </div>
     <img src="profilepic.jpg" alt="About Me Image">
   </div>
 </section>
+
 
   <section id="about">
   <h2>About Me</h2>
@@ -252,11 +276,10 @@ context.</p>
       <p id="about-full" style="display:none;">
         specializing in migration, integration, and international recruitment. I support individuals and organizations in navigating complex migration processes, 
         adapting to new cultural environments, and attracting andretaining international talent.
-      </p>
-      <p> Drawing on experience across both public and private sectors, I provide tailored consulting, workshops, 
+     Drawing on experience across both public and private sectors, I provide tailored consulting, workshops, 
         and training focused on intercultural communication, integration strategies, and effective international recruitment practices.
         My goal is to create smooth, inclusive transitions that benefit both people and organizations</p>
-      <p>I combine practical expertise with a personalized approach, helping clients achieve sustainable results in a global and culturally diverse context.</p>
+      combine practical expertise with a personalized approach, helping clients achieve sustainable results in a global and culturally diverse context.</p>
       <button id="readMoreBtn" class="btn-main" onclick="toggleReadMore()">Read More</button>
       <button class="btn-main" onclick="openForm()">Contact Me</button>
     </div>
@@ -269,7 +292,10 @@ context.</p>
   <h2>Services</h2>
   <div class="service-item">
     <h3>Migration Consulting</h3>
-    <p>Plan and execute seamless migration of IT systems with minimal downtime and maximum efficiency.</p>
+    <ul>
+      <li>Intercultural coaching and adaptation support</li>
+      <li>Workshops to build inclusive communities and workplaces</li>
+    </ul>
   </div>
   <div class="service-item">
     <h3> Integration Support</h3>
