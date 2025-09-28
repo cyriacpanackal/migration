@@ -133,20 +133,23 @@ footer a:hover { opacity:0.7; }
 @media (max-width: 700px) {
   .hero { flex-direction:column; }
   .hero img { width:160px; height:160px; }
-  .about-content {
-    display: grid;
-    grid-template-columns: 1fr 100px;  /* text left, image right */
-    grid-template-rows: auto;
+   .about-content {
+    display: flex;
+    flex-direction: row; /* horizontal layout */
+    align-items: flex-start;
     gap: 10px;
-    align-items: start;
   }
-.about-content img {
-    display: none; /* hide image on small screens */
+
+  .about-content img {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    object-fit: cover;
   }
 
   .about-text {
+    flex: 1; /* text takes remaining width */
     font-size: 0.95em;
-    line-height: 1.5;
   }
 
   section { margin:30px 14px; padding:28px; }
@@ -240,6 +243,27 @@ context.</p>
     <img src="profilepic.jpg" alt="About Me Image">
   </div>
 </section>
+
+  <section id="about">
+  <h2>About Me</h2>
+  <div class="about-content">
+    <div class="about-text">
+      <p id="about-short">Hello, I'm Cyriac Panackal, a freelance consultant</p>
+      <p id="about-full" style="display:none;">
+        specializing in migration, integration, and international recruitment. I support individuals and organizations in navigating complex migration processes, 
+        adapting to new cultural environments, and attracting andretaining international talent.
+      </p>
+      <p> Drawing on experience across both public and private sectors, I provide tailored consulting, workshops, 
+        and training focused on intercultural communication, integration strategies, and effective international recruitment practices.
+        My goal is to create smooth, inclusive transitions that benefit both people and organizations</p>
+      <p>I combine practical expertise with a personalized approach, helping clients achieve sustainable results in a global and culturally diverse context.</p>
+      <button id="readMoreBtn" class="btn-main" onclick="toggleReadMore()">Read More</button>
+      <button class="btn-main" onclick="openForm()">Contact Me</button>
+    </div>
+    <img src="aboutpic.jpg" alt="About Me Image">
+  </div>
+</section>
+
 
   <section id="services">
   <h2>Services</h2>
@@ -354,6 +378,19 @@ context.</p>
       if(top < windowHeight - 100) section.classList.add("show");
     });
   }
+  function toggleReadMore() {
+  const fullText = document.getElementById("about-full");
+  const btn = document.getElementById("readMoreBtn");
+
+  if(fullText.style.display === "none") {
+    fullText.style.display = "block";
+    btn.innerText = "Read Less";
+  } else {
+    fullText.style.display = "none";
+    btn.innerText = "Read More";
+  }
+}
+
   window.addEventListener("scroll", revealSections);
   window.addEventListener("load", revealSections);
 </script>
