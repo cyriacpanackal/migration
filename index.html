@@ -181,7 +181,7 @@
         Let’s connect and build solutions that matter.</p>
         <button class="btn-main" onclick="openForm()">Contact Me</button>
       </div>
-      <img src="aboutpic.jpg" alt="About Me Image">
+      <img src="profilepic.jpg" alt="About Me Image">
     </div>
   </section>
 
@@ -201,9 +201,9 @@
     <h2>Impressum</h2>
     <p>
       Cyriac Panackal Consulting<br>
-      Address: Musterstraße 1, 12345 Beispielstadt<br>
-      Email: info@cyriacpanackal-consulting.de<br>
-      VAT-ID: DE123456789<br><br>
+      Address: Lütterzer Str. 2, 36041 Fulda<br>
+      Email: cyriac@panackal.de<br>
+      Contact: +49 1744705695<br><br>
       Responsible for content: Cyriac Panackal
     </p>
   </section>
@@ -224,9 +224,8 @@
   <footer>
     <p>© 2025 Cyriac Panackal Consulting</p>
     <p>
-      <a href="https://linkedin.com">LinkedIn</a> |
-      <a href="https://github.com">GitHub</a> |
-      <a href="mailto:info@cyriacpanackal-consulting.de">Email</a>
+      <a href="https://linkedin.com">LinkedIn</a> 
+      <a href="mailto:cyriac@panackal.de">Email</a>
     </p>
   </footer>
 
@@ -247,8 +246,8 @@
         from_name: name,
         from_email: email,
         message: message
-      }).then(() => { alert("Message sent successfully!"); closeForm(); },
-              (err) => { alert("Failed to send message."); console.error(err); });
+      }).then(() => {closeForm(); },
+              (err) => {console.error(err); });
     }
 
     // Fade in sections on scroll
