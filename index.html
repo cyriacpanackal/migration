@@ -51,31 +51,29 @@ section { max-width: var(--max-width); margin:60px auto; padding:40px; backgroun
 section.show { opacity:1; transform:translateY(0);}
 h2 { color: var(--primary); font-size:1.9em; margin-bottom:18px; }
 
-/* About */
-.about-content img:hover { transform: translateY(-6px); }
-
-/* Desktop layout – keep flex as before */
 .about-content {
   display: flex;
-  gap: 40px;
-  align-items: center;
-  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
 }
 
-.about-content img {
-  max-width: 380px;
-  border-radius: 16px;
-  object-fit: cover;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-}
-.about-content img:hover {
-  transform: translateY(-6px);
-}
-
-/* About text */
 .about-text {
   flex: 2;
-  min-width: 280px;
+}
+
+.about-img {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.about-img img {
+  max-width: 180px;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
 }
 
 /* Services */
@@ -143,26 +141,31 @@ footer a:hover { opacity:0.7; }
   .hero { flex-direction:column; }
   .hero img { width:160px; height:160px; }
  .about-content {
-    display: flex;
-    flex-direction: row;
     align-items: flex-start;
     gap: 10px;
   }
 
-  .about-content img {
+  .about-img img {
     width: 80px;
     height: 80px;
-    border-radius: 12px;
-    object-fit: cover;
-  }
-
-  .about-text {
-    flex: 1;
-    font-size: 0.95em;
+    border-radius: 8px;
   }
 
   #about-full {
-    display: none; /* hidden until Read More is clicked */
+    display: none; /* hidden until Read More clicked */
+  }
+
+  #readMoreLink {
+    display: inline-block;
+    margin-top: 5px;
+    color: #0077cc;
+    cursor: pointer;
+    font-size: 0.9em;
+    text-decoration: underline;
+  }
+
+  #readMoreLink:hover {
+    color: #005999;
   }
 
   section { margin:30px 14px; padding:28px; }
@@ -232,18 +235,18 @@ html { scroll-behavior:smooth; }
   </div>
 </div>
 
-
   <section id="about">
   <h2>About Me</h2>
   <div class="about-content">
     <div class="about-text">
-      <!-- Short text always shown -->
-      <p id="about-short">Hello, I'm Cyriac Panackal, a freelance consultant </p>
-      
+      <!-- Short text always visible -->
+      <p id="about-short">
+       Hello, I'm Cyriac Panackal, a freelance consultant specializing in migration, integration, and international recruitment.
+      </p>
+
       <!-- Full text (hidden on mobile, visible on desktop) -->
       <p id="about-full">
-       specializing in
-migration, integration, and international recruitment. I support
+       I support
 individuals and organizations in navigating complex migration
 processes, adapting to new cultural environments, and attracting and
 retaining international talent. <br> <br>
@@ -258,12 +261,16 @@ I combine practical expertise with a personalized approach, helping
 clients achieve sustainable results in a global and culturally diverse
 context.
       </p>
-      
-      <!-- Button only for mobile -->
-      <button id="readMoreBtn" class="btn-main" onclick="toggleReadMore()">Read More</button>
+
+      <!-- Read more text link (only for mobile) -->
+      <a href="javascript:void(0)" id="readMoreLink" onclick="toggleReadMore()">Read More</a>
+
+      <br>
       <button class="btn-main" onclick="openForm()">Contact Me</button>
     </div>
-    <img src="profilepic.jpg" alt="About Me Image">
+    <div class="about-img">
+      <img src="aboutpic.jpg" alt="About Me Image">
+    </div>
   </div>
 </section>
 
@@ -279,6 +286,7 @@ context.
   </div>
   <div class="service-item">
     <h3> Integration Support</h3>
+    <ul>
      <li>Intercultural coaching and adaptation support</li>
       <li>Workshops to build inclusive communities and workplaces</li>
     </ul>
