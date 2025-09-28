@@ -1,27 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cyriac Panackal Consulting</title>
-  <link rel="icon" href="profilepic.jpg" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="profilepic.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #1e40af; /* footer blue */
+      --primary: #1e40af; 
+      --gradient: linear-gradient(135deg, #1e40af, #3b82f6);
       --bg: #f3f6fd;
       --text: #1d1d1f;
       --max-width: 1100px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-    }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
 
-    /* Sticky Nav */
+    /* Header */
     header {
       position: sticky;
       top: 0;
@@ -35,7 +31,7 @@
       align-items: center;
       box-shadow: 0 3px 12px rgba(0,0,0,0.15);
     }
-    header nav a {
+    nav a {
       color: #fff;
       text-decoration: none;
       margin: 0 18px;
@@ -43,48 +39,37 @@
       font-size: 1.05em;
       transition: opacity 0.25s;
     }
-    header nav a:hover { opacity: 0.8; }
-    header nav .btn {
-      background: #fff;
-      color: var(--primary);
-      padding: 8px 18px;
-      border-radius: 24px;
-      font-weight: 600;
-      transition: background 0.3s, color 0.3s;
-    }
-    header nav .btn:hover {
-      background: var(--primary);
-      color: #fff;
-    }
+    nav a:hover { opacity: 0.8; }
+    nav .btn { background: #fff; color: var(--primary); padding: 8px 18px; border-radius: 24px; font-weight: 600; transition: background 0.3s, color 0.3s; }
+    nav .btn:hover { background: var(--primary); color: #fff; }
 
-    /* Hero Section */
+    /* Hero */
     .hero {
-      text-align: center;
-      padding: 60px 20px 40px 20px;
-      background: linear-gradient(135deg, var(--primary), #162f7d);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 60px 20px;
+      background: var(--gradient);
       color: #fff;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 1s forwards;
     }
     .hero img {
       width: 220px;
       height: 220px;
       border-radius: 50%;
-      object-fit: cover;
       border: 6px solid #fff;
-      margin-bottom: 20px;
+      margin: 20px;
+      object-fit: cover;
       box-shadow: 0 8px 24px rgba(0,0,0,0.3), 0 0 20px rgba(30,64,175,0.6);
       transition: transform 0.4s;
     }
     .hero img:hover { transform: scale(1.08) rotate(2deg); }
-    .hero h1 {
-      font-size: 2.6em;
-      margin-bottom: 12px;
-    }
-    .hero p {
-      font-size: 1.2em;
-      max-width: 700px;
-      margin: 0 auto;
-      opacity: 0.9;
-    }
+    .hero h1 { font-size: 2.6em; margin-bottom: 12px; }
+    .hero p { font-size: 1.2em; max-width: 700px; margin: 0 auto; opacity: 0.9; }
 
     /* Sections */
     section {
@@ -93,166 +78,114 @@
       padding: 40px;
       background: #fff;
       border-radius: 20px;
-      box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
       scroll-margin-top: 90px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-out;
     }
-    h2 {
-      color: var(--primary);
-      font-size: 1.9em;
-      margin-bottom: 18px;
-    }
+    section.show { opacity: 1; transform: translateY(0); }
+    h2 { color: var(--primary); font-size: 1.9em; margin-bottom: 18px; }
 
-    /* About section with image */
-    .about-content {
-      display: flex;
-      gap: 40px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .about-content img {
-      flex: 1;
-      max-width: 380px;
-      border-radius: 16px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-    }
-    .about-text {
-      flex: 2;
-      min-width: 280px;
-    }
+    /* About */
+    .about-content { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+    .about-content img { flex: 1; max-width: 380px; border-radius: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.12); transition: transform 0.3s; }
+    .about-content img:hover { transform: translateY(-6px); }
+    .about-text { flex: 2; min-width: 280px; }
 
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    ul li {
-      padding: 10px 0;
-      font-size: 1.05em;
-      border-bottom: 1px solid #eee;
-    }
+    /* Services */
+    ul { list-style: none; padding-left: 0; }
+    ul li { padding: 10px 0; font-size: 1.05em; border-bottom: 1px solid #eee; }
 
     .btn-main {
       display: inline-block;
       margin-top: 22px;
       padding: 14px 34px;
-      background: linear-gradient(135deg, var(--primary), #162f7d);
+      background: var(--gradient);
       color: #fff;
       font-weight: 600;
       text-decoration: none;
       border-radius: 32px;
       transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
     }
-    .btn-main:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
-    }
+    .btn-main:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,0.2); }
 
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      background: var(--primary);
-      color: #fff;
-      margin-top: 60px;
-    }
-    footer a {
-      color: #fff;
-      margin: 0 10px;
-      font-size: 1.2em;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
+    /* Footer */
+    footer { text-align: center; padding: 40px 20px; background: var(--primary); color: #fff; margin-top: 60px; }
+    footer a { color: #fff; margin: 0 10px; font-size: 1.2em; text-decoration: none; transition: opacity 0.2s; }
     footer a:hover { opacity: 0.7; }
 
     /* Popup Form */
-    .form-popup {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 2000;
-      justify-content: center;
-      align-items: center;
-    }
+    .form-popup { display: none; position: fixed; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.5); z-index:2000; justify-content:center; align-items:center; }
     .form-container {
-      background: #fff;
-      padding: 30px;
-      border-radius: 14px;
-      width: 90%;
-      max-width: 400px;
+      background: #fff; padding:30px; border-radius:14px; width:90%; max-width:400px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
     }
-    .form-container h3 {
-      margin-bottom: 16px;
-      color: var(--primary);
+    .form-popup.show .form-container { transform: scale(1); }
+    .form-container h3 { margin-bottom:16px; color: var(--primary); }
+    .form-container input, .form-container textarea {
+      width:100%; padding:10px; margin:8px 0 16px; border:1px solid #ccc; border-radius:8px; font-size:1em;
     }
-    .form-container input,
-    .form-container textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0 16px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 1em;
-      font-family: inherit;
-    }
-    .form-container textarea {
-      resize: vertical;
-      height: 120px;
-    }
-    .btn-cancel {
-      background: #aaa;
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 24px;
-      cursor: pointer;
-      margin-left: 10px;
-    }
-    .btn-cancel:hover { background: #888; }
+    .form-container textarea { resize:vertical; height:120px; }
+    .btn-cancel { background:#aaa; color:#fff; padding:10px 20px; border:none; border-radius:24px; cursor:pointer; margin-left:10px; }
+    .btn-cancel:hover { background:#888; }
 
-    /* Mobile */
+    /* Responsive */
     @media (max-width: 700px) {
-      .hero h1 { font-size: 2em; }
+      .hero { flex-direction: column; }
       .hero img { width: 160px; height: 160px; }
-      section { margin: 30px 14px; padding: 28px; }
-      header nav a { margin: 0 10px; font-size: 0.95em; }
       .about-content { flex-direction: column; text-align: center; }
       .about-content img { max-width: 100%; }
+      section { margin: 30px 14px; padding: 28px; }
     }
 
     html { scroll-behavior: smooth; }
+
+    /* Animations */
+    @keyframes fadeUp {
+      0% { opacity:0; transform: translateY(40px); }
+      100% { opacity:1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
+  <!-- Header -->
   <header>
     <nav>
       <a href="#about">About Me</a>
       <a href="#services">Services</a>
       <a href="#impressum">Impressum</a>
-     <a href="javascript:void(0);" class="btn" onclick="openForm()">Contact</a>
+      <a href="javascript:void(0);" class="btn" onclick="openForm()">Contact</a>
     </nav>
   </header>
 
+  <!-- Hero -->
   <div class="hero">
-    <img src="profilepic.jpg" alt="Profile Picture" />
-    <h1>Cyriac Panackal Consulting</h1>
-    <p>Helping organizations navigate digital transformation, migration, and innovation.</p>
+    <img src="profilepic.jpg" alt="Profile Picture">
+    <div>
+      <h1>Cyriac Panackal Consulting</h1>
+      <p>Helping organizations navigate digital transformation, migration, and innovation.</p>
+    </div>
   </div>
 
+  <!-- About Me -->
   <section id="about">
     <h2>About Me</h2>
     <div class="about-content">
       <div class="about-text">
-        <p>
-          Hello, I'm Cyriac! I’m passionate about technology, migration projects, and software development.<br><br>
-          With years of experience in consulting and project management, I help organizations navigate digital transformation and migration challenges.<br><br>
-          Let’s connect and build solutions that matter.
-        </p>
+        <p>Hello, I'm Cyriac! I’m passionate about technology, migration projects, and software development.<br><br>
+        With years of experience in consulting and project management, I help organizations navigate digital transformation and migration challenges.<br><br>
+        Let’s connect and build solutions that matter.</p>
+        <button class="btn-main" onclick="openForm()">Contact Me</button>
       </div>
-      <img src="profilepic.jpg" alt="About Me Image" />
-      <a href="javascript:void(0);" class="btn" onclick="openForm()">Contact</a>
+      <img src="aboutpic.jpg" alt="About Me Image">
     </div>
   </section>
 
+  <!-- Services -->
   <section id="services">
     <h2>Services</h2>
     <ul>
@@ -263,13 +196,14 @@
     </ul>
   </section>
 
+  <!-- Impressum -->
   <section id="impressum">
     <h2>Impressum</h2>
     <p>
-      Cyriac Panackal Consulting<br />
-      Address: Musterstraße 1, 12345 Beispielstadt<br />
-      Email: info@cyriacpanackal-consulting.de<br />
-      VAT-ID: DE123456789<br /><br />
+      Cyriac Panackal Consulting<br>
+      Address: Musterstraße 1, 12345 Beispielstadt<br>
+      Email: info@cyriacpanackal-consulting.de<br>
+      VAT-ID: DE123456789<br><br>
       Responsible for content: Cyriac Panackal
     </p>
   </section>
@@ -286,48 +220,47 @@
     </div>
   </div>
 
+  <!-- Footer -->
   <footer>
     <p>© 2025 Cyriac Panackal Consulting</p>
     <p>
       <a href="https://linkedin.com">LinkedIn</a> |
+      <a href="https://github.com">GitHub</a> |
       <a href="mailto:info@cyriacpanackal-consulting.de">Email</a>
     </p>
   </footer>
 
-  <!-- EmailJS Script -->
+  <!-- EmailJS -->
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
-    (function() {
-      emailjs.init("ITXZhTxzoNhcgBkSe"); // replace with your EmailJS User ID
-    })();
+    (function() { emailjs.init("ITXZhTxzoNhcgBkSe"); })();
 
-    function openForm() {
-      document.getElementById("contactForm").style.display = "flex";
-    }
-    function closeForm() {
-      document.getElementById("contactForm").style.display = "none";
-    }
+    function openForm() { document.getElementById("contactForm").classList.add("show"); document.getElementById("contactForm").style.display = "flex"; }
+    function closeForm() { document.getElementById("contactForm").classList.remove("show"); document.getElementById("contactForm").style.display = "none"; }
     function sendEmail() {
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
       const message = document.getElementById("message").value.trim();
-
-      if (!name || !email || !message) {
-        alert("Please fill out all fields.");
-        return;
-      }
+      if (!name || !email || !message) { alert("Please fill out all fields."); return; }
 
       emailjs.send("service_sysbf2f", "template_cwxhl09", {
         from_name: name,
         from_email: email,
         message: message
-      })
-      .then(function() {
-        closeForm();
-      }, function(error) {
-        console.error(error);
-      });
+      }).then(() => { alert("Message sent successfully!"); closeForm(); },
+              (err) => { alert("Failed to send message."); console.error(err); });
     }
+
+    // Fade in sections on scroll
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.2 });
+    sections.forEach(section => observer.observe(section));
   </script>
 </body>
 </html>
