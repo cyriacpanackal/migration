@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #1e40af; 
+      --primary: #1e40af;
       --gradient: linear-gradient(135deg, #1e40af, #3b82f6);
       --bg: #f3f6fd;
       --text: #1d1d1f;
@@ -138,17 +138,22 @@
       .hero { flex-direction: column; }
       .hero img { width: 160px; height: 160px; }
       .about-content { flex-direction: column; text-align: center; }
-      .about-content img { max-width: 100%; }
+      .about-content img {
+        max-width: 80%; 
+        margin: 20px auto;
+        display: block;
+      }
+      .about-text { width: 100%; }
       section { margin: 30px 14px; padding: 28px; }
+    }
+    @media (max-width: 400px) {
+      .hero img { width: 120px; height: 120px; }
+      .hero h1 { font-size: 1.8em; }
+      .hero p { font-size: 1em; }
     }
 
     html { scroll-behavior: smooth; }
-
-    /* Animations */
-    @keyframes fadeUp {
-      0% { opacity:0; transform: translateY(40px); }
-      100% { opacity:1; transform: translateY(0); }
-    }
+    @keyframes fadeUp { 0% { opacity:0; transform: translateY(40px); } 100% { opacity:1; transform: translateY(0); } }
   </style>
 </head>
 <body>
@@ -181,7 +186,7 @@
         Let’s connect and build solutions that matter.</p>
         <button class="btn-main" onclick="openForm()">Contact Me</button>
       </div>
-      <img src="profilepic.jpg" alt="About Me Image">
+      <img src="aboutpic.jpg" alt="About Me Image">
     </div>
   </section>
 
@@ -190,7 +195,7 @@
     <h2>Services</h2>
     <ul>
       <li>💻 IT Migration Consulting</li>
-      <li>📊 Project Management & Planning</li>
+      <li>📊 Project Management
       <li>⚙️ Custom Software Solutions</li>
       <li>🎓 Training & Workshops</li>
     </ul>
