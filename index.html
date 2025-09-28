@@ -119,26 +119,27 @@ footer a:hover { opacity:0.7; }
   .hero { flex-direction:column; }
   .hero img { width:160px; height:160px; }
 
-    .about-content {
+     .about-content {
     display: flex;
-    flex-direction: row;      /* horizontal layout */
+    flex-direction: row;       /* horizontal */
     align-items: flex-start;
     gap: 10px;
   }
 
   .about-content img {
-    flex-shrink: 0;           /* prevent shrinking */
-    width: 80px;              /* small but visible */
+    order: 2;                  /* image after text in source, but visually right */
+    flex-shrink: 0;            /* prevent shrinking */
+    width: 80px;
     height: 80px;
     border-radius: 12px;
     object-fit: cover;
   }
 
   .about-text {
-    flex: 1;                  /* text takes remaining space */
+    order: 1;                  /* text appears first */
+    flex: 1;                   /* takes remaining space */
     font-size: 0.95em;
   }
-
   section { margin:30px 14px; padding:28px; }
    .nav-container {
     justify-content: flex-end; /* hamburger toggle on the right */
