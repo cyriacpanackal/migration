@@ -228,7 +228,7 @@
       <a href="#about">About Me</a>
       <a href="#services">Services</a>
       <a href="#impressum">Impressum</a>
-      <a href="#contact" class="btn">Contact</a>
+     <a href="javascript:void(0);" class="btn" onclick="openForm()">Contact</a>
     </nav>
   </header>
 
@@ -271,11 +271,6 @@
       VAT-ID: DE123456789<br /><br />
       Responsible for content: Cyriac Panackal
     </p>
-  </section>
-
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <button class="btn-main" onclick="openForm()">Send a Message</button>
   </section>
 
   <!-- Popup Form -->
@@ -327,10 +322,8 @@
         message: message
       })
       .then(function() {
-        alert("Message sent successfully!");
         closeForm();
       }, function(error) {
-        alert("Failed to send message. Please try again.");
         console.error(error);
       });
     }
