@@ -53,7 +53,7 @@ h2 { color: var(--primary); font-size:1.9em; margin-bottom:18px; }
 
 /* About */
 .about-content img:hover { transform: translateY(-6px); }
-  /* Desktop About Me – keep previous flex layout */
+
 .about-content {
   display: flex;
   gap: 40px;
@@ -61,15 +61,12 @@ h2 { color: var(--primary); font-size:1.9em; margin-bottom:18px; }
   flex-wrap: wrap;
 }
 
-/* About image */
 .about-content img {
-  flex-shrink: 0;
   max-width: 380px;
   border-radius: 16px;
+  object-fit: cover;
   box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-  transition: transform 0.3s;
 }
-
 .about-content img:hover {
   transform: translateY(-6px);
 }
@@ -114,30 +111,42 @@ footer a:hover { opacity:0.7; }
 .btn-cancel { background:#aaa; color:#fff; padding:10px 20px; border:none; border-radius:24px; cursor:pointer; margin-left:10px; }
 .btn-cancel:hover { background:#888; }
 
+  .service-item {
+  background: #f9faff;
+  padding: 16px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.service-item h3 {
+  color: var(--primary);
+  margin-bottom: 6px;
+}
+.service-item p {
+  margin: 0;
+  color: #333;
+  font-size: 0.95em;
+}
+
 /* Responsive */
 @media (max-width: 700px) {
   .hero { flex-direction:column; }
   .hero img { width:160px; height:160px; }
-
-     .about-content {
-    display: flex;
-    flex-direction: row;       /* horizontal */
-    align-items: flex-start;
+  .about-content {
+    display: grid;
+    grid-template-columns: 1fr auto; /* text left, image right */
     gap: 10px;
+    align-items: start;
   }
 
   .about-content img {
-    order: 2;                  /* image after text in source, but visually right */
-    flex-shrink: 0;            /* prevent shrinking */
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     border-radius: 12px;
     object-fit: cover;
   }
 
   .about-text {
-    order: 1;                  /* text appears first */
-    flex: 1;                   /* takes remaining space */
     font-size: 0.95em;
   }
   section { margin:30px 14px; padding:28px; }
@@ -232,17 +241,26 @@ context.</p>
   </div>
 </section>
 
-
-<!-- Services -->
-<section id="services">
+  <section id="services">
   <h2>Services</h2>
-  <ul>
-    <li>💻 Migration Consulting</li>
-    <li>📊 Integration Support</li>
-    <li>⚙️International Recruitment</li>
-    <li>🎓 Training & Workshops</li>
-  </ul>
+  <div class="service-item">
+    <h3>Migration Consulting</h3>
+    <p>Plan and execute seamless migration of IT systems with minimal downtime and maximum efficiency.</p>
+  </div>
+  <div class="service-item">
+    <h3> Integration Support</h3>
+    <p>Comprehensive project planning, scheduling, and execution support to achieve your goals on time.</p>
+  </div>
+  <div class="service-item">
+    <h3>International Recruitment</h3>
+    <p>Develop tailored software solutions to optimize your business processes and improve productivity.</p>
+  </div>
+  <div class="service-item">
+    <h3>Training & Workshops</h3>
+    <p>Conduct hands-on workshops and training sessions for teams to adopt new tools and methodologies.</p>
+  </div>
 </section>
+
 
 <!-- Impressum -->
 <section id="impressum">
