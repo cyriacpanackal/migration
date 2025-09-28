@@ -131,7 +131,7 @@ footer a:hover { opacity:0.7; }
   #about-full {
     display: block !important;
   }
-  #readMoreBtn {
+  #readMoreLink {
     display: none;
   }
 }
@@ -180,8 +180,7 @@ footer a:hover { opacity:0.7; }
 
   .menu-toggle {
     display: block;
-    order: 2;
-    margin-right: 10px;
+    margin-left: auto; /* push it to the right */
   }
 
   .nav-links {
@@ -269,7 +268,7 @@ context.
       <button class="btn-main" onclick="openForm()">Contact Me</button>
     </div>
     <div class="about-img">
-      <img src="aboutpic.jpg" alt="About Me Image">
+      <img src="profilepic.jpg" alt="About Me Image">
     </div>
   </div>
 </section>
@@ -400,18 +399,19 @@ context.
       if(top < windowHeight - 100) section.classList.add("show");
     });
   }
-  function toggleReadMore() {
+function toggleReadMore() {
   const fullText = document.getElementById("about-full");
-  const btn = document.getElementById("readMoreBtn");
+  const link = document.getElementById("readMoreLink");
 
-  if(fullText.style.display === "none") {
+  if (fullText.style.display === "none" || fullText.style.display === "") {
     fullText.style.display = "block";
-    btn.innerText = "Read Less";
+    link.innerText = "Read Less";
   } else {
     fullText.style.display = "none";
-    btn.innerText = "Read More";
+    link.innerText = "Read More";
   }
 }
+
 
   window.addEventListener("scroll", revealSections);
   window.addEventListener("load", revealSections);
