@@ -96,23 +96,30 @@ footer a:hover { opacity:0.7; }
   .hero { flex-direction:column; }
   .hero img { width:160px; height:160px; }
    .about-content {
-    flex-direction: row;      /* horizontal layout */
-    flex-wrap: nowrap;        /* no wrap */
-    align-items: flex-start;  /* top align text & image */
+    display: flex;
+    flex-direction: row;   /* horizontal layout */
+    flex-wrap: nowrap;     /* no wrap */
+    align-items: flex-start;
     justify-content: flex-start;
     gap: 12px;
     text-align: left;
+    width: 100%;
+    overflow: hidden;      /* prevent image overflow */
+    box-sizing: border-box;
+    padding: 0 10px;      /* small padding inside container */
   }
+
   .about-content img {
-    max-width: 80px;          /* small image */
-    height: 80px;
+    max-width: 70px;       /* very small image */
+    height: 70px;
     border-radius: 12px;
-    margin-top: 4px;          /* align vertically with text */
-    flex-shrink: 0;
+    flex-shrink: 0;        /* don’t shrink below max-width */
   }
+
   .about-text {
-    flex: 1;
+    flex: 1;               /* text takes remaining space */
     font-size: 0.95em;
+    overflow-wrap: break-word; /* prevent text overflow */
   }
   section { margin:30px 14px; padding:28px; }
    .nav-container {
@@ -216,7 +223,6 @@ html { scroll-behavior:smooth; }
   <div class="form-container">
     <h3>Send me a message</h3>
     <input type="text" id="name" placeholder="Your Name" required>
-    <input type="email" id="email" placeholder="Your Email
     <input type="email" id="email" placeholder="Your Email" required>
     <textarea id="message" placeholder="Your Message" required></textarea>
     <button type="button" class="btn-main" onclick="sendEmail()">Send</button>
