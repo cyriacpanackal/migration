@@ -1,279 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cyriac Panackal Consulting</title>
-  <link rel="icon" href="profilepic.jpg">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #1e40af;
-      --gradient: linear-gradient(135deg, #1e40af, #3b82f6);
-      --bg: #f3f6fd;
-      --text: #1d1d1f;
-      --max-width: 1100px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cyriac Panackal Consulting</title>
+<link rel="icon" href="profilepic.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #1e40af;
+  --gradient: linear-gradient(135deg, #1e40af, #3b82f6);
+  --bg: #f3f6fd;
+  --text: #1d1d1f;
+  --max-width: 1100px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+/* Header */
+header { position: sticky; top: 0; background: rgba(30,64,175,0.95); backdrop-filter: blur(10px); padding: 12px 20px; z-index:1000; box-shadow:0 3px 12px rgba(0,0,0,0.15);}
+.nav-container { display:flex; justify-content:space-between; align-items:center; max-width: var(--max-width); margin:auto; }
+.nav-links { display:flex; gap:20px; align-items:center; }
+.nav-links a { color:#fff; text-decoration:none; font-weight:600; white-space:nowrap; }
+.nav-links a:hover { opacity:0.8; }
+.menu-toggle { display:none; font-size:1.8em; cursor:pointer; }
 
-    /* Header */
-    header {
-      position: sticky;
-      top: 0;
-      background: rgba(30, 64, 175, 0.95);
-      backdrop-filter: blur(10px);
-      color: #fff;
-      padding: 12px 20px;
-      z-index: 1000;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.15);
-    }
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: var(--max-width);
-      margin: auto;
-    }
-    .nav-links {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-    }
-    .nav-links a { color: #fff; text-decoration: none; font-weight: 600; white-space: nowrap; }
-    .nav-links a:hover { opacity: 0.8; }
-    .menu-toggle {
-      display: none;
-      font-size: 1.8em;
-      cursor: pointer;
-    }
+/* Hero */
+.hero { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; padding:60px 20px; background:var(--gradient); color:#fff; text-align:center; opacity:0; transform:translateY(40px); animation:fadeUp 1s forwards; }
+.hero img { width:220px; height:220px; border-radius:50%; border:6px solid #fff; margin:20px; object-fit:cover; box-shadow:0 8px 24px rgba(0,0,0,0.3),0 0 20px rgba(30,64,175,0.6); transition:transform 0.4s; }
+.hero img:hover { transform: scale(1.08) rotate(2deg); }
+.hero h1 { font-size:2.6em; margin-bottom:12px; }
+.hero p { font-size:1.2em; max-width:700px; margin:0 auto; opacity:0.9; }
 
-    /* Hero */
-    .hero {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      padding: 60px 20px;
-      background: var(--gradient);
-      color: #fff;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(40px);
-      animation: fadeUp 1s forwards;
-    }
-    .hero img {
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      border: 6px solid #fff;
-      margin: 20px;
-      object-fit: cover;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3), 0 0 20px rgba(30,64,175,0.6);
-      transition: transform 0.4s;
-    }
-    .hero img:hover { transform: scale(1.08) rotate(2deg); }
-    .hero h1 { font-size: 2.6em; margin-bottom: 12px; }
-    .hero p { font-size: 1.2em; max-width: 700px; margin: 0 auto; opacity: 0.9; }
+/* Sections */
+section { max-width: var(--max-width); margin:60px auto; padding:40px; background:#fff; border-radius:20px; box-shadow:0 8px 24px rgba(0,0,0,0.08); scroll-margin-top:90px; opacity:0; transform:translateY(40px); transition: all 0.8s ease-out;}
+section.show { opacity:1; transform:translateY(0);}
+h2 { color: var(--primary); font-size:1.9em; margin-bottom:18px; }
 
-    /* Sections */
-    section {
-      max-width: var(--max-width);
-      margin: 60px auto;
-      padding: 40px;
-      background: #fff;
-      border-radius: 20px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-      scroll-margin-top: 90px;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s ease-out;
-    }
-    section.show { opacity: 1; transform: translateY(0); }
-    h2 { color: var(--primary); font-size: 1.9em; margin-bottom: 18px; }
+/* About */
+.about-content { display:flex; gap:40px; align-items:center; flex-wrap:wrap; }
+.about-content img { flex:1; max-width:380px; border-radius:16px; box-shadow:0 6px 20px rgba(0,0,0,0.12); transition: transform 0.3s; }
+.about-content img:hover { transform: translateY(-6px); }
+.about-text { flex:2; min-width:280px; }
 
-    /* About */
-    .about-content { display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
-    .about-content img { flex: 1; max-width: 380px; border-radius: 16px; box-shadow: 0 6px 20px rgba(0,0,0,0.12); transition: transform 0.3s; }
-    .about-content img:hover { transform: translateY(-6px); }
-    .about-text { flex: 2; min-width: 280px; }
+/* Services */
+ul { list-style:none; padding-left:0; }
+ul li { padding:10px 0; font-size:1.05em; border-bottom:1px solid #eee; }
 
-    /* Services */
-    ul { list-style: none; padding-left: 0; }
-    ul li { padding: 10px 0; font-size: 1.05em; border-bottom: 1px solid #eee; }
+/* Buttons */
+.btn-main { display:inline-block; margin-top:22px; padding:14px 34px; background:var(--gradient); color:#fff; font-weight:600; text-decoration:none; border-radius:32px; transition: transform 0.2s, box-shadow 0.2s; cursor:pointer; }
+.btn-main:hover { transform: translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,0.2); }
 
-    .btn-main {
-      display: inline-block;
-      margin-top: 22px;
-      padding: 14px 34px;
-      background: var(--gradient);
-      color: #fff;
-      font-weight: 600;
-      text-decoration: none;
-      border-radius: 32px;
-      transition: transform 0.2s, box-shadow 0.2s;
-      cursor: pointer;
-    }
-    .btn-main:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,0.2); }
+/* Footer */
+footer { text-align:center; padding:40px 20px; background:var(--primary); color:#fff; margin-top:60px; }
+footer a { color:#fff; margin:0 10px; font-size:1.2em; text-decoration:none; transition:opacity 0.2s; }
+footer a:hover { opacity:0.7; }
 
-    /* Footer */
-    footer { text-align: center; padding: 40px 20px; background: var(--primary); color: #fff; margin-top: 60px; }
-    footer a { color: #fff; margin: 0 10px; font-size: 1.2em; text-decoration: none; transition: opacity 0.2s; }
-    footer a:hover { opacity: 0.7; }
+/* Popup Form */
+.form-popup { display:none; position:fixed; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.5); z-index:2000; justify-content:center; align-items:center; }
+.form-container { background:#fff; padding:30px; border-radius:14px; width:90%; max-width:400px; box-shadow:0 8px 24px rgba(0,0,0,0.2); transform:scale(0.9); transition: transform 0.3s ease;}
+.form-popup.show .form-container { transform:scale(1); }
+.form-container h3 { margin-bottom:16px; color: var(--primary); }
+.form-container input, .form-container textarea { width:100%; padding:10px; margin:8px 0 16px; border:1px solid #ccc; border-radius:8px; font-size:1em; }
+.form-container textarea { resize:vertical; height:120px; }
+.btn-cancel { background:#aaa; color:#fff; padding:10px 20px; border:none; border-radius:24px; cursor:pointer; margin-left:10px; }
+.btn-cancel:hover { background:#888; }
 
-    /* Popup Form */
-    .form-popup { display: none; position: fixed; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.5); z-index:2000; justify-content:center; align-items:center; }
-    .form-container {
-      background: #fff; padding:30px; border-radius:14px; width:90%; max-width:400px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-      transform: scale(0.9);
-      transition: transform 0.3s ease;
-    }
-    .form-popup.show .form-container { transform: scale(1); }
-    .form-container h3 { margin-bottom:16px; color: var(--primary); }
-    .form-container input, .form-container textarea {
-      width:100%; padding:10px; margin:8px 0 16px; border:1px solid #ccc; border-radius:8px; font-size:1em;
-    }
-    .form-container textarea { resize:vertical; height:120px; }
-    .btn-cancel { background:#aaa; color:#fff; padding:10px 20px; border:none; border-radius:24px; cursor:pointer; margin-left:10px; }
-    .btn-cancel:hover { background:#888; }
+/* Responsive */
+@media (max-width: 700px) {
+  .menu-toggle { display:block; }
+  .nav-links { display:none; flex-direction:column; background: var(--primary); position:absolute; top:60px; right:10px; width:200px; border-radius:8px; padding:10px; }
+  .nav-links.show { display:flex; }
+  .hero { flex-direction:column; }
+  .hero img { width:160px; height:160px; }
+  .about-content { flex-direction:column; text-align:center; }
+  .about-content img { max-width:70%; margin:20px auto; display:block; }
+  .about-text { width:100%; }
+  section { margin:30px 14px; padding:28px; }
+}
+@media (max-width: 400px) {
+  .hero img { width:120px; height:120px; }
+  .hero h1 { font-size:1.8em; }
+  .hero p { font-size:1em; }
+}
 
-    /* Responsive */
-    @media (max-width: 700px) {
-      .menu-toggle { display: block; }
-      .nav-links { display: none; flex-direction: column; background: var(--primary); position: absolute; top: 60px; right: 10px; width: 180px; border-radius: 8px; padding: 10px; }
-      .nav-links.show { display: flex; }
-      .hero { flex-direction: column; }
-      .hero img { width: 160px; height: 160px; }
-      .about-content { flex-direction: column; text-align: center; }
-      .about-content img { max-width: 70%; margin: 20px auto; display: block; }
-      .about-text { width: 100%; }
-      section { margin: 30px 14px; padding: 28px; }
-    }
-    @media (max-width: 400px) {
-      .hero img { width: 120px; height: 120px; }
-      .hero h1 { font-size: 1.8em; }
-      .hero p { font-size: 1em; }
-    }
-
-    html { scroll-behavior: smooth; }
-    @keyframes fadeUp { 0% { opacity:0; transform: translateY(40px); } 100% { opacity:1; transform: translateY(0); } }
-  </style>
+html { scroll-behavior:smooth; }
+@keyframes fadeUp { 0%{opacity:0; transform:translateY(40px);} 100%{opacity:1; transform:translateY(0);} }
+</style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <div class="nav-container">
-      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-      <div class="nav-links" id="navLinks">
-        <a href="#about">About Me</a>
-        <a href="#services">Services</a>
-        <a href="#impressum">Impressum</a>
-        <a href="javascript:void(0);" class="btn" onclick="openForm()">Contact</a>
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <div class="hero">
-    <img src="profilepic.jpg" alt="Profile Picture">
-    <div>
-      <h1>Cyriac Panackal Consulting</h1>
-      <p>Helping organizations navigate digital transformation, migration, and innovation.</p>
+<!-- Header -->
+<header>
+  <div class="nav-container">
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About Me</a>
+      <a href="#services">Services</a>
+      <a href="#impressum">Impressum</a>
+      <a href="javascript:void(0);" class="btn" onclick="openForm()">Contact</a>
     </div>
   </div>
+</header>
 
-  <!-- About Me -->
-  <section id="about">
-    <h2>About Me</h2>
-    <div class="about-content">
-      <div class="about-text">
-        <p>Hello, I'm Cyriac! I’m passionate about technology, migration projects, and software development.<br><br>
-        With years of experience in consulting and project management, I help organizations navigate digital transformation and migration challenges.<br><br>
-        Let’s connect and build solutions that matter.</p>
-        <button class="btn-main" onclick="openForm()">Contact Me</button>
-      </div>
-      <img src="profilepic.jpg" alt="About Me Image">
+<!-- Hero -->
+<div class="hero">
+  <img src="profilepic.jpg" alt="Profile Picture">
+  <div>
+    <h1>Cyriac Panackal Consulting</h1>
+    <p>Helping organizations navigate digital transformation, migration, and innovation.</p>
+  </div>
+</div>
+
+<!-- About Me -->
+<section id="about">
+  <h2>About Me</h2>
+  <div class="about-content">
+    <div class="about-text">
+      <p>Hello, I'm Cyriac! I’m passionate about technology, migration projects, and software development.<br><br>
+      With years of experience in consulting and project management, I help organizations navigate digital transformation and migration challenges.<br><br>
+      Let’s connect and build solutions that matter.</p>
+      <button class="btn-main" onclick="openForm()">Contact Me</button>
     </div>
-  </section>
+    <img src="profilepic.jpg" alt="About Me Image">
+  </div>
+</section>
 
-  <!-- Services -->
-  <section id="services">
-    <h2>Services</h2>
-    <ul>
-      <li>💻 IT Migration Consulting</li>
-      <li>📊 Project Management & Planning</li>
-      <li>⚙️ Custom Software Solutions</li>
-      <li>🎓 Training & Workshops</li>
-    </ul>
-  </section>
+<!-- Services -->
+<section id="services">
+  <h2>Services</h2>
+  <ul>
+    <li>💻 IT Migration Consulting</li>
+    <li>📊 Project Management & Planning</li>
+    <li>⚙️ Custom Software Solutions</li>
+    <li>🎓 Training & Workshops</li>
+  </ul>
+</section>
 
-  <!-- Impressum -->
-  <section id="impressum">
-    <h2>Impressum</h2>
-    <p>
+<!-- Impressum -->
+<section id="impressum">
+  <h2>Impressum</h2>
+  <p>
       Cyriac Panackal Consulting<br>
       Address: Lütterzer Str. 2, 36041 Fulda<br>
       Email: cyriac@panackal.de<br>
       Contact: +49 1744705695<br><br>
       Responsible for content: Cyriac Panackal
-    </p>
-  </section>
+  </p>
+</section>
 
-  <!-- Popup Form -->
-  <div id="contactForm" class="form-popup">
-    <div class="form-container">
-      <h3>Send me a message</h3>
-      <input type="text" id="name" placeholder="Your Name" required>
-      <input type="email" id="email" placeholder="Your Email" required>
-      <textarea id="message" placeholder="Your Message" required></textarea>
-      <button type="button" class="btn-main" onclick="sendEmail()">Send</button>
-      <button type="button" class="btn-cancel" onclick="closeForm()">Close</button>
-    </div>
+<!-- Contact Form -->
+<div id="contactForm" class="form-popup">
+  <div class="form-container">
+    <h3>Send me a message</h3>
+    <input type="text" id="name" placeholder="Your Name" required>
+    <input type="email" id="email" placeholder="Your Email
+    <input type="email" id="email" placeholder="Your Email" required>
+    <textarea id="message" placeholder="Your Message" required></textarea>
+    <button type="button" class="btn-main" onclick="sendEmail()">Send</button>
+    <button type="button" class="btn-cancel" onclick="closeForm()">Close</button>
   </div>
+</div>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Cyriac Panackal Consulting</p>
-    <p>
-      <a href="https://linkedin.com">LinkedIn</a> 
-      <a href="mailto:cyriac@panackal.de">Email</a>
-    </p>
-  </footer>
+<!-- Footer -->
+<footer>
+  <p>© 2025 Cyriac Panackal Consulting</p>
+  <p>
+    <a href="https://linkedin.com" target="_blank">LinkedIn</a> |
+    <a href="https://github.com" target="_blank">GitHub</a> |
+    <a href="mailto:info@cyriacpanackal-consulting.de">Email</a>
+  </p>
+</footer>
 
-  <!-- EmailJS -->
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-  <script>
-    (function() { emailjs.init("ITXZhTxzoNhcgBkSe"); })();
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
 
-    function openForm() { document.getElementById("contactForm").classList.add("show"); document.getElementById("contactForm").style.display = "flex"; }
-    function closeForm() { document.getElementById("contactForm").classList.remove("show"); document.getElementById("contactForm").style.display = "none"; }
-    function sendEmail() {
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const message = document.getElementById("message").value.trim();
-      if (!name || !email || !message) { alert("Please fill out all fields."); return; }
+ (function() { emailjs.init("ITXZhTxzoNhcgBkSe"); })();
 
-      emailjs.send("service_sysbf2f", "template_cwxhl09", {
-        from_name: name,
-        from_email: email,
-        message: message
-      }).then(() => {closeForm(); },
-              (err) => {console.error(err); });
+  // Popup Form
+  function openForm() {
+    document.getElementById("contactForm").classList.add("show");
+  }
+  function closeForm() {
+    document.getElementById("contactForm").classList.remove("show");
+  }
+
+  // Hamburger menu toggle
+  function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("show");
+  }
+
+  // Send email via EmailJS
+  function sendEmail() {
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var message = document.getElementById("message").value;
+
+    if(!name || !email || !message) {
+      alert("Please fill all fields");
+      return;
     }
 
-    // Fade in sections on scroll
-    const sections = document.querySelectorAll('section');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('show');
-        }
+    var templateParams = {
+      from_name: name,
+      from_email: email,
+      message: message
+    };
+
+     emailjs.send("service_sysbf2f", "template_cwxhl09", templateParams)
+      .then(function(response) {
+        alert("Message sent successfully!");
+        closeForm();
+        document.getElementById("name").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("message").value = "";
+      }, function(error) {
+        alert("Failed to send message. Please try again.");
+        console.log(error);
       });
-    }, { threshold: 0.2 });
-    sections.forEach(section => observer.observe(section));
-  </script>
+  }
+
+  // Scroll animation for sections
+  function revealSections() {
+    const sections = document.querySelectorAll("section");
+    const windowHeight = window.innerHeight;
+    sections.forEach(section => {
+      const top = section.getBoundingClientRect().top;
+      if(top < windowHeight - 100) section.classList.add("show");
+    });
+  }
+  window.addEventListener("scroll", revealSections);
+  window.addEventListener("load", revealSections);
+</script>
+
 </body>
 </html>
