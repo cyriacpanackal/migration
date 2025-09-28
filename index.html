@@ -52,10 +52,31 @@ section.show { opacity:1; transform:translateY(0);}
 h2 { color: var(--primary); font-size:1.9em; margin-bottom:18px; }
 
 /* About */
-.about-content { display:flex; gap:40px; align-items:center; flex-wrap:wrap; }
-.about-content img { flex:1; max-width:380px; border-radius:16px; box-shadow:0 6px 20px rgba(0,0,0,0.12); transition: transform 0.3s; }
 .about-content img:hover { transform: translateY(-6px); }
-.about-text { flex:2; min-width:280px; }
+  /* About Me section */
+.about-content {
+  position: relative;
+  padding: 20px;
+  min-height: 150px; /* ensure enough space for image */
+}
+
+/* Image on top-right */
+.about-content img {
+  position: absolute;
+  top: 20px;      /* distance from top of section */
+  right: 20px;    /* distance from right */
+  width: 120px;   /* adjust size */
+  height: 120px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+/* Text flows underneath */
+.about-text {
+  margin-right: 140px; /* leave space for image on right */
+  font-size: 1em;
+}
 
 /* Services */
 ul { list-style:none; padding-left:0; }
@@ -102,19 +123,16 @@ footer a:hover { opacity:0.7; }
     padding: 0 10px;
   }
 
-  .about-content img {
-    float: right;         /* image on right */
-    width: 90px;          /* small but visible */
-    height: 90px;
-    border-radius: 12px;
-    margin: 0 0 10px 10px; /* space between text and image */
-    object-fit: cover;
+   .about-content img {
+    top: 15px;
+    right: 15px;
+    width: 80px;
+    height: 80px;
+  }
+  .about-text {
+    margin-right: 0;  /* full width on small screens */
   }
 
-  .about-text {
-    overflow-wrap: break-word;
-    font-size: 0.95em;
-  }
   section { margin:30px 14px; padding:28px; }
    .nav-container {
     justify-content: flex-end; /* hamburger toggle on the right */
