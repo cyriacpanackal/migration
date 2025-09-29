@@ -223,6 +223,89 @@ footer a:hover { opacity:0.7; }
 
 html { scroll-behavior:smooth; }
 @keyframes fadeUp { 0%{opacity:0; transform:translateY(40px);} 100%{opacity:1; transform:translateY(0);} }
+
+    /* container */
+  .nod-kipp-wrap {
+    display: flex;
+    gap: 36px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1100px;
+    margin: 24px auto;
+    padding: 18px;
+  }
+
+  /* tweak these to change overall speed / amplitude */
+  :root {
+    --nod-duration: 1.05s;       /* how fast the head nods */
+    --nod-angle: 30deg;          /* how far the head rotates each way */
+    --nod-ease: cubic-bezier(.25,.9,.2,1);
+    --window-duration: 1.05s;    /* same as nod for sync */
+    --window-angle: -18deg;      /* tilt amount for window */
+    --accent: #1e40af;
+  }
+
+  /* person SVG sizing */
+  .person-svg { width: 240px; max-width: 36vw; height: auto; display:block; }
+
+  /* window SVG sizing */
+  .window-svg { width: 180px; max-width: 24vw; height:auto; display:block; }
+
+  /* make the head (group .head) pivot at the neck */
+  .person-svg .head {
+    transform-origin: 50% 80%; /* pivot near neck (relative to group bounding box) */
+    animation: head-nod var(--nod-duration) var(--nod-ease) infinite;
+  }
+
+  @keyframes head-nod {
+    0%   { transform: rotate(0deg); }
+    10%  { transform: rotate(calc(var(--nod-angle) * -1)); } /* forward nod */
+    30%  { transform: rotate(calc(var(--nod-angle) * 1)); }  /* backward */
+    50%  { transform: rotate(calc(var(--nod-angle) * -0.7)); }
+    70%  { transform: rotate(calc(var(--nod-angle) * 0.4)); }
+    90%  { transform: rotate(calc(var(--nod-angle) * -0.15)); }
+    100% { transform: rotate(0deg); }
+  }
+
+  /* subtle body reaction: small translate on y */
+  .person-svg .torso {
+    animation: torso-bob calc(var(--nod-duration) * 1) ease-in-out infinite;
+  }
+  @keyframes torso-bob {
+    0% { transform: translateY(0); }
+    30% { transform: translateY(3px); }
+    60% { transform: translateY(0); }
+    100% { transform: translateY(0); }
+  }
+
+  /* window tilt - pivot at top center of sash */
+  .window-svg .sash {
+    transform-origin: 50% 0%;
+    animation: window-tilt var(--window-duration) var(--nod-ease) infinite;
+    transform-box: fill-box;
+  }
+  @keyframes window-tilt {
+    0%   { transform: rotate(0deg); }
+    10%  { transform: rotate(var(--window-angle)); }  /* tilt open */
+    50%  { transform: rotate(calc(var(--window-angle) * 0.25)); }
+    80%  { transform: rotate(0deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+  /* visual polish */
+  .person-svg .accent { fill: var(--accent); }
+  .window-svg .frame { fill: #ffffffcc; stroke: #ccd7ff; stroke-width:2; }
+  .window-svg .glass { fill: linear-gradient(#dbeafe,#e8f0ff); fill:#dbeafe; opacity:0.95; }
+  .label { font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; font-size:0.95rem; color:#123456; text-align:center; margin-top:8px; }
+  
+  /* responsive tweaks */
+  @media (max-width: 600px){
+    .nod-kipp-wrap { gap: 18px; padding: 8px; }
+    :root { --nod-angle: 24deg; }
+    .person-svg { width: 36vw; }
+    .window-svg { width: 24vw; }
+  }
 </style>
 </head>
 <body>
@@ -288,6 +371,73 @@ context.
   </div>
 </section>
 
+<div class="nod-kipp-wrap" aria-hidden="false">
+  <!-- Person (SVG) -->
+  <svg class="person-svg" viewBox="0 0 180 220" role="img" aria-label="Animated person nodding">
+    <!-- shadow -->
+    <ellipse cx="90" cy="210" rx="44" ry="8" fill="#000" opacity="0.08"></ellipse>
+
+    <!-- torso -->
+    <g class="torso">
+      <rect x="50" y="110" rx="12" ry="12" width="80" height="74" fill="#f5f7ff" stroke="#d7e2ff" stroke-width="2"></rect>
+      <!-- shoulders -->
+      <path d="M40 120 C55 105, 125 105, 140 120" fill="#f5f7ff" stroke="#d7e2ff" stroke-width="2"></path>
+    </g>
+
+    <!-- head group (will nod) -->
+    <g class="head">
+      <!-- neck -->
+      <rect x="82" y="100" width="16" height="14" rx="3" fill="#f2d7c9"></rect>
+
+      <!-- head (circle) -->
+      <circle cx="90" cy="74" r="30" fill="#f2d7c9" stroke="#e8bfa6" stroke-width="1.5"></circle>
+
+      <!-- hair -->
+      <path d="M60 70 q30 -28 60 0 q-6 -14 -30 -14 q-24 0 -30 14" fill="#2f3b72" opacity="0.95"></path>
+
+      <!-- eyes - a simple closed/semiclosed look -->
+      <g stroke="#2b2b2b" stroke-linecap="round" stroke-width="2" fill="none">
+        <path d="M75 78 q6 6 15 0" /> <!-- left eye curve -->
+        <path d="M105 78 q6 6 15 0" /> <!-- right eye curve -->
+      </g>
+
+      <!-- mouth (subtle smile) -->
+      <path d="M82 92 q8 6 16 0" stroke="#3b3b3b" stroke-width="2" fill="none" stroke-linecap="round"></path>
+
+      <!-- accent (scarf / collar) -->
+      <path d="M60 100 q30 10 60 0" fill="#E9EDFF" stroke="#d7e2ff" stroke-width="1.5"></path>
+    </g>
+  </svg>
+
+  <!-- Window (SVG) -->
+  <svg class="window-svg" viewBox="0 0 120 140" role="img" aria-label="Animated kipp window">
+    <!-- frame -->
+    <rect x="6" y="6" width="108" height="128" rx="6" class="frame"></rect>
+
+    <!-- fixed outer mullions -->
+    <line x1="6" y1="70" x2="114" y2="70" stroke="#c9d8ff" stroke-width="1.5"></line>
+
+    <!-- left fixed pane -->
+    <g transform="translate(8,8)">
+      <rect x="0" y="0" width="50" height="58" rx="3" class="glass" fill="#dbeafe" opacity="0.98"></rect>
+      <rect x="0" y="0" width="50" height="58" rx="3" fill="none" stroke="#bcd1ff" stroke-width="1"></rect>
+    </g>
+
+    <!-- right kipp sash (this is the moving part) -->
+    <g class="sash" transform="translate(62,8)">
+      <!-- sash border -->
+      <rect x="0" y="0" width="50" height="58" rx="3" fill="#eaf2ff" stroke="#bcd1ff" stroke-width="1"></rect>
+      <!-- glass -->
+      <rect x="4" y="4" width="42" height="50" rx="2" fill="#dbeafe" opacity="0.95"></rect>
+
+      <!-- handle/lock near bottom -->
+      <circle cx="38" cy="42" r="2.8" fill="#6b738f"></circle>
+    </g>
+
+    <!-- sill -->
+    <rect x="6" y="96" width="108" height="12" rx="4" fill="#eef4ff" stroke="#d7e8ff" stroke-width="1"></rect>
+  </svg>
+</div>
 
   <section id="services">
   <h2>Services</h2>
