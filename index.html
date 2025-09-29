@@ -267,6 +267,55 @@
       from { opacity: 0; transform: translateY(40px); }
       to { opacity: 1; transform: translateY(0); }
     }
+     .nod-kipp-wrap {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+    margin: 32px auto;
+    max-width: 900px;
+  }
+
+  :root {
+    --nod-duration: 1.2s;
+    --nod-angle: 28deg;
+    --window-duration: 1.2s;
+    --window-angle: -22deg; /* inward tilt */
+    --accent: #1e40af;
+  }
+
+  .person-svg { width: 220px; height: auto; }
+  .window-svg { width: 180px; height: auto; }
+
+  /* head nod */
+  .head {
+    transform-origin: 50% 80%;
+    animation: head-nod var(--nod-duration) cubic-bezier(.25,.9,.2,1) infinite;
+  }
+  @keyframes head-nod {
+    0%   { transform: rotate(0); }
+    20%  { transform: rotate(var(--nod-angle)); }
+    50%  { transform: rotate(calc(var(--nod-angle) * -0.6)); }
+    80%  { transform: rotate(var(--nod-angle)); }
+    100% { transform: rotate(0); }
+  }
+
+  /* window tilt (hinged at bottom edge) */
+  .sash {
+    transform-origin: 50% 100%; /* pivot at bottom center */
+    animation: window-kipp var(--window-duration) cubic-bezier(.25,.9,.2,1) infinite;
+    transform-box: fill-box;
+  }
+  @keyframes window-kipp {
+    0%   { transform: rotate(0deg); }
+    20%  { transform: rotate(var(--window-angle)); } /* tilt inward */
+    50%  { transform: rotate(calc(var(--window-angle) * 0.3)); }
+    80%  { transform: rotate(var(--window-angle)); }
+    100% { transform: rotate(0deg); }
+  }
+
+  .frame { fill:#fff; stroke:#ccd7ff; stroke-width:3; }
+  .glass { fill:#dbeafe; }
   </style>
 </head>
 <body>
@@ -309,6 +358,14 @@
   <section id="services">
     <h2>Services</h2>
     <div class="service-item">
+     <div class="nod-kipp-wrap">
+        <svg class="person-svg" viewBox="0 0 180 220">
+          <g class="head">
+            <circle cx="90" cy="74" r="30" fill="#f2d7c9" stroke="#e8bfa6"/>
+          </g>
+          <rect x="70" y="100" width="40" height="80" rx="10" fill="#f5f7ff" stroke="#d7e2ff"/>
+        </svg>
+      </div>
       <h3>Migration Consulting</h3>
       <ul>
         <li>Guidance through visas, permits, and relocation</li>
@@ -316,6 +373,15 @@
       </ul>
     </div>
     <div class="service-item">
+      <div class="nod-kipp-wrap">
+        <svg class="window-svg" viewBox="0 0 120 160">
+          <rect x="5" y="5" width="110" height="150" rx="6" class="frame"/>
+          <g class="sash">
+            <rect x="15" y="15" width="90" height="130" rx="4" fill="#eef4ff" stroke="#bcd1ff"/>
+            <rect x="20" y="20" width="80" height="120" rx="2" class="glass"/>
+          </g>
+        </svg>
+      </div>
       <h3>Integration Support</h3>
       <ul>
         <li>Intercultural coaching and adaptation support</li>
