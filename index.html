@@ -84,21 +84,66 @@
 
     /* Hero */
     .hero {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      padding: 60px 20px;
-      background: var(--gradient);
-      color: #fff;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(40px);
-      animation: fadeUp 1s forwards;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 60px 20px;
+  background: var(--gradient);
+  color: #fff;
+  max-width: var(--max-width);
+  margin: auto;
+  border-radius: 16px;
+}
 
-    .hero h1 { font-size: 2.6em; margin-bottom: 12px; }
-    .hero p { font-size: 1.2em; max-width: 700px; margin: 0 auto; opacity: 0.9; }
+.hero-left {
+  flex: 0 0 auto;
+}
+
+.hero-logo {
+  width: 80px; /* thumbnail size */
+  height: 80px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.hero-right {
+  flex: 1 1 auto;
+}
+
+.hero-right h1 {
+  font-size: 2.2em;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.hero-right p {
+  font-size: 1.1em;
+  opacity: 0.9;
+}
+
+/* Responsive (stack on mobile) */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-logo {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 16px;
+  }
+
+  .hero-right h1 {
+    font-size: 1.8em;
+  }
+
+  .hero-right p {
+    font-size: 1em;
+  }
+}
+
 
     /* Sections */
     section {
@@ -390,11 +435,17 @@
   </header>
 
   <!-- Hero -->
-  <div class="hero">
-    <img src="logo.png"/>
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-left">
+    <img src="logo.png" alt="Logo" class="hero-logo">
+  </div>
+  <div class="hero-right">
     <h1>Cyriac Panackal Consulting</h1>
     <p>Connecting People and Cultures.</p>
   </div>
+</div>
+
 
   <!-- About -->
   <section id="about">
