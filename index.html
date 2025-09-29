@@ -1,543 +1,405 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cyriac Panackal Consulting</title>
-<link rel="icon" href="profilepic.jpg">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-<style>
-:root {
-  --primary: #1e40af;
-  --gradient: linear-gradient(135deg, #1e40af, #3b82f6);
-  --bg: #f3f6fd;
-  --text: #1d1d1f;
-  --max-width: 1100px;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
-  body {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1.05em;
-  line-height: 1.7;
-  color: #333;
-}
-
-h1, h2, h3 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  color: #0a2540;
-  letter-spacing: -0.5px;
-}
-
-
-/* Header */
-header { position: sticky; top: 0; background: rgba(30,64,175,0.95); backdrop-filter: blur(10px); padding: 12px 20px; z-index:1000; box-shadow:0 3px 12px rgba(0,0,0,0.15);}
-.nav-links a { color:#fff; text-decoration:none; font-weight:600; white-space:nowrap; }
-.nav-links a:hover { opacity:0.8; }
-.menu-toggle { display:none; font-size:1.8em; cursor:pointer; }
-
-  header .nav-container {
-  display: flex;
-  justify-content: center; /* center nav links horizontally */
-  align-items: center;
-  max-width: var(--max-width);
-  margin: auto;
-  position: relative;
-}
-
-.nav-links {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
-
-
-/* Hero */
-.hero { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; padding:60px 20px; background:var(--gradient); color:#fff; text-align:center; opacity:0; transform:translateY(40px); animation:fadeUp 1s forwards; }
-.hero img { width:220px; height:220px; border-radius:50%; border:6px solid #fff; margin:20px; object-fit:cover; box-shadow:0 8px 24px rgba(0,0,0,0.3),0 0 20px rgba(30,64,175,0.6); transition:transform 0.4s; }
-.hero img:hover { transform: scale(1.08) rotate(2deg); }
-.hero h1 { font-size:2.6em; margin-bottom:12px; }
-.hero p { font-size:1.2em; max-width:700px; margin:0 auto; opacity:0.9; }
-
-/* Sections */
-section { max-width: var(--max-width); margin:60px auto; padding:40px; background:#fff; border-radius:20px; box-shadow:0 8px 24px rgba(0,0,0,0.08); scroll-margin-top:90px; opacity:0; transform:translateY(40px); transition: all 0.8s ease-out;}
-section.show { opacity:1; transform:translateY(0);}
-h2 { color: var(--primary); font-size:1.9em; margin-bottom:18px; }
-
-.about-content {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.about-text {
-  flex: 2;
-}
-
-.about-img {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.about-img img {
-  max-width: 310px;
-  height: auto;
-  border-radius: 12px;
-  object-fit: cover;
-}
-
-/* Services */
-ul { list-style:none; padding-left:0; }
-ul li { padding:10px 0; font-size:1.05em; border-bottom:1px solid #eee; }
-
-/* Buttons */
-.btn-main { display:inline-block; margin-top:22px; padding:14px 34px; background:var(--gradient); color:#fff; font-weight:600; text-decoration:none; border-radius:32px; transition: transform 0.2s, box-shadow 0.2s; cursor:pointer; }
-.btn-main:hover { transform: translateY(-2px); box-shadow:0 4px 14px rgba(0,0,0,0.2); }
-
-/* Footer */
-footer { text-align:center; padding:40px 20px; background:var(--primary); color:#fff; margin-top:60px; }
-footer a { color:#fff; margin:0 10px; font-size:1.2em; text-decoration:none; transition:opacity 0.2s; }
-footer a:hover { opacity:0.7; }
-
-/* Popup Form */
-.form-popup {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.5);
-  z-index: 2000;
-  justify-content: center;
-  align-items: center;
-}
-
-.form-popup.show { display: flex; } /* IMPORTANT */
-
-.form-container { background:#fff; padding:30px; border-radius:14px; width:90%; max-width:400px; box-shadow:0 8px 24px rgba(0,0,0,0.2); transform:scale(0.9); transition: transform 0.3s ease;}
-.form-popup.show .form-container { transform:scale(1); }
-.form-container h3 { margin-bottom:16px; color: var(--primary); }
-.form-container input, .form-container textarea { width:100%; padding:10px; margin:8px 0 16px; border:1px solid #ccc; border-radius:8px; font-size:1em; }
-.form-container textarea { resize:vertical; height:120px; }
-.btn-cancel { background:#aaa; color:#fff; padding:10px 20px; border:none; border-radius:24px; cursor:pointer; margin-left:10px; }
-.btn-cancel:hover { background:#888; }
-
-  .service-item {
-  background: #f9faff;
-  padding: 16px;
-  margin-bottom: 12px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
-.service-item h3 {
-  color: var(--primary);
-  margin-bottom: 6px;
-}
-.service-item p {
-  margin: 0;
-  color: #333;
-  font-size: 0.95em;
-}
-  /* Desktop: show all text, hide Read More button */
-@media (min-width: 701px) {
-  #about-full {
-    display: block !important;
-  }
-  #readMoreLink {
-    display: none;
-  }
-}
-
-/* Responsive */
-@media (max-width: 700px) {
-  .hero { flex-direction:column; }
-  .hero img { width:160px; height:160px; }
- .about-content {
-    align-items: flex-start;
-    gap: 10px;
-  }
-
-  .about-img img {
-    width: 80px;
-    height: 80px;
-    border-radius: 8px;
-  }
-
-  #about-full {
-    display: none; /* hidden until Read More clicked */
-  }
-
-  #readMoreLink {
-    display: inline-block;
-    margin-top: 5px;
-    color: #0077cc;
-    cursor: pointer;
-    font-size: 0.9em;
-    text-decoration: underline;
-  }
-
-  #readMoreLink:hover {
-    color: #005999;
-  }
-
-  section { margin:30px 14px; padding:28px; }
-   .nav-container {
-    justify-content: flex-end; /* hamburger toggle on the right */
-    position: relative;
-  }
- .nav-container {
-    justify-content: flex-end; /* hamburger icon moves to right */
-    position: relative;
-  }
-
-  .menu-toggle {
-    display: block;
-    margin-left: auto; /* push it to the right */
-  }
-
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;       /* below header */
-    right: 10px;     /* align menu to right */
-    background: var(--primary);
-    padding: 12px;
-    border-radius: 8px;
-    width: 180px;
-    gap: 10px;
-    z-index: 1500;
-  }
-
-  .nav-links.show { display: flex; }
-}
-
-@media (max-width: 400px) {
-  .hero img { width:120px; height:120px; }
-  .hero h1 { font-size:1.8em; }
-  .hero p { font-size:1em; }
-}
-
-html { scroll-behavior:smooth; }
-@keyframes fadeUp { 0%{opacity:0; transform:translateY(40px);} 100%{opacity:1; transform:translateY(0);} }
-
-    /* container */
-  .nod-kipp-wrap {
-    display: flex;
-    gap: 36px;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 1100px;
-    margin: 24px auto;
-    padding: 18px;
-  }
-
-  /* tweak these to change overall speed / amplitude */
-  :root {
-    --nod-duration: 1.05s;       /* how fast the head nods */
-    --nod-angle: 30deg;          /* how far the head rotates each way */
-    --nod-ease: cubic-bezier(.25,.9,.2,1);
-    --window-duration: 1.05s;    /* same as nod for sync */
-    --window-angle: -18deg;      /* tilt amount for window */
-    --accent: #1e40af;
-  }
-
-  /* person SVG sizing */
-  .person-svg { width: 240px; max-width: 36vw; height: auto; display:block; }
-
-  /* window SVG sizing */
-  .window-svg { width: 180px; max-width: 24vw; height:auto; display:block; }
-
-  /* make the head (group .head) pivot at the neck */
-  .person-svg .head {
-    transform-origin: 50% 80%; /* pivot near neck (relative to group bounding box) */
-    animation: head-nod var(--nod-duration) var(--nod-ease) infinite;
-  }
-
-  @keyframes head-nod {
-    0%   { transform: rotate(0deg); }
-    10%  { transform: rotate(calc(var(--nod-angle) * -1)); } /* forward nod */
-    30%  { transform: rotate(calc(var(--nod-angle) * 1)); }  /* backward */
-    50%  { transform: rotate(calc(var(--nod-angle) * -0.7)); }
-    70%  { transform: rotate(calc(var(--nod-angle) * 0.4)); }
-    90%  { transform: rotate(calc(var(--nod-angle) * -0.15)); }
-    100% { transform: rotate(0deg); }
-  }
-
-  /* subtle body reaction: small translate on y */
-  .person-svg .torso {
-    animation: torso-bob calc(var(--nod-duration) * 1) ease-in-out infinite;
-  }
-  @keyframes torso-bob {
-    0% { transform: translateY(0); }
-    30% { transform: translateY(3px); }
-    60% { transform: translateY(0); }
-    100% { transform: translateY(0); }
-  }
-
-  /* window tilt - pivot at top center of sash */
-  .window-svg .sash {
-    transform-origin: 50% 0%;
-    animation: window-tilt var(--window-duration) var(--nod-ease) infinite;
-    transform-box: fill-box;
-  }
-  @keyframes window-tilt {
-    0%   { transform: rotate(0deg); }
-    10%  { transform: rotate(var(--window-angle)); }  /* tilt open */
-    50%  { transform: rotate(calc(var(--window-angle) * 0.25)); }
-    80%  { transform: rotate(0deg); }
-    100% { transform: rotate(0deg); }
-  }
-
-  /* visual polish */
-  .person-svg .accent { fill: var(--accent); }
-  .window-svg .frame { fill: #ffffffcc; stroke: #ccd7ff; stroke-width:2; }
-  .window-svg .glass { fill: linear-gradient(#dbeafe,#e8f0ff); fill:#dbeafe; opacity:0.95; }
-  .label { font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; font-size:0.95rem; color:#123456; text-align:center; margin-top:8px; }
-  
-  /* responsive tweaks */
-  @media (max-width: 600px){
-    .nod-kipp-wrap { gap: 18px; padding: 8px; }
-    :root { --nod-angle: 24deg; }
-    .person-svg { width: 36vw; }
-    .window-svg { width: 24vw; }
-  }
-</style>
-</head>
-<body>
-
-<!-- Header -->
-<header>
-  <div class="nav-container">
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-    <div class="nav-links" id="navLinks">
-      <a href="#about">About Me</a>
-      <a href="#services">Services</a>
-      <a class="btn" onclick="openForm()">Contact</a>
-    </div>
-  </div>
-</header>
-
-<!-- Hero -->
-<div class="hero">
- <div class="nod-kipp-wrap" aria-hidden="false">
-  <!-- Person (SVG) -->
-  <svg class="person-svg" viewBox="0 0 180 220" role="img" aria-label="Animated person nodding">
-    <!-- shadow -->
-    <ellipse cx="90" cy="210" rx="44" ry="8" fill="#000" opacity="0.08"></ellipse>
-
-    <!-- torso -->
-    <g class="torso">
-      <rect x="50" y="110" rx="12" ry="12" width="80" height="74" fill="#f5f7ff" stroke="#d7e2ff" stroke-width="2"></rect>
-      <!-- shoulders -->
-      <path d="M40 120 C55 105, 125 105, 140 120" fill="#f5f7ff" stroke="#d7e2ff" stroke-width="2"></path>
-    </g>
-
-    <!-- head group (will nod) -->
-    <g class="head">
-      <!-- neck -->
-      <rect x="82" y="100" width="16" height="14" rx="3" fill="#f2d7c9"></rect>
-
-      <!-- head (circle) -->
-      <circle cx="90" cy="74" r="30" fill="#f2d7c9" stroke="#e8bfa6" stroke-width="1.5"></circle>
-
-      <!-- hair -->
-      <path d="M60 70 q30 -28 60 0 q-6 -14 -30 -14 q-24 0 -30 14" fill="#2f3b72" opacity="0.95"></path>
-
-      <!-- eyes - a simple closed/semiclosed look -->
-      <g stroke="#2b2b2b" stroke-linecap="round" stroke-width="2" fill="none">
-        <path d="M75 78 q6 6 15 0" /> <!-- left eye curve -->
-        <path d="M105 78 q6 6 15 0" /> <!-- right eye curve -->
-      </g>
-
-      <!-- mouth (subtle smile) -->
-      <path d="M82 92 q8 6 16 0" stroke="#3b3b3b" stroke-width="2" fill="none" stroke-linecap="round"></path>
-
-      <!-- accent (scarf / collar) -->
-      <path d="M60 100 q30 10 60 0" fill="#E9EDFF" stroke="#d7e2ff" stroke-width="1.5"></path>
-    </g>
-  </svg>
-
-  <!-- Window (SVG) -->
-  <svg class="window-svg" viewBox="0 0 120 140" role="img" aria-label="Animated kipp window">
-    <!-- frame -->
-    <rect x="6" y="6" width="108" height="128" rx="6" class="frame"></rect>
-
-    <!-- fixed outer mullions -->
-    <line x1="6" y1="70" x2="114" y2="70" stroke="#c9d8ff" stroke-width="1.5"></line>
-
-    <!-- left fixed pane -->
-    <g transform="translate(8,8)">
-      <rect x="0" y="0" width="50" height="58" rx="3" class="glass" fill="#dbeafe" opacity="0.98"></rect>
-      <rect x="0" y="0" width="50" height="58" rx="3" fill="none" stroke="#bcd1ff" stroke-width="1"></rect>
-    </g>
-
-    <!-- right kipp sash (this is the moving part) -->
-    <g class="sash" transform="translate(62,8)">
-      <!-- sash border -->
-      <rect x="0" y="0" width="50" height="58" rx="3" fill="#eaf2ff" stroke="#bcd1ff" stroke-width="1"></rect>
-      <!-- glass -->
-      <rect x="4" y="4" width="42" height="50" rx="2" fill="#dbeafe" opacity="0.95"></rect>
-
-      <!-- handle/lock near bottom -->
-      <circle cx="38" cy="42" r="2.8" fill="#6b738f"></circle>
-    </g>
-
-    <!-- sill -->
-    <rect x="6" y="96" width="108" height="12" rx="4" fill="#eef4ff" stroke="#d7e8ff" stroke-width="1"></rect>
-  </svg>
-</div>
-  <div>
-    <h1>Cyriac Panackal Consulting</h1>
-    <p>Connecting People and cultures.</p>
-  </div>
-</div>
-
-  <section id="about">
-  <h2>About Me</h2>
-  <div class="about-content">
-    <div class="about-text">
-      <!-- Short text always visible -->
-      <p id="about-short">
-       Hello, I'm Cyriac Panackal, a freelance consultant specializing in migration, integration, and international recruitment.
-      </p>
-
-      <!-- Full text (hidden on mobile, visible on desktop) -->
-      <p id="about-full">
-       I support
-individuals and organizations in navigating complex migration
-processes, adapting to new cultural environments, and attracting and
-retaining international talent. <br> <br>
-
-Drawing on experience across both public and private sectors, I
-provide tailored consulting, workshops, and training focused on
-intercultural communication, integration strategies, and effective
-international recruitment practices. My goal is to create smooth,
-inclusive transitions that benefit both people and organizations.<br> <br>
-
-I combine practical expertise with a personalized approach, helping
-clients achieve sustainable results in a global and culturally diverse
-context.
-      </p>
-
-      <!-- Read more text link (only for mobile) -->
-      <a href="javascript:void(0)" id="readMoreLink" onclick="toggleReadMore()">Read More</a>
-
-      <br>
-      <button class="btn-main" onclick="openForm()">Contact Me</button>
-    </div>
-    <div class="about-img">
-      <img src="profilepic.jpg" alt="About Me Image">
-    </div>
-  </div>
-</section>
-
-  <section id="services">
-  <h2>Services</h2>
-  <div class="service-item">
-    <h3>Migration Consulting</h3>
-    <ul>
-      <li>Personalized guidance through visas, permits, and relocation</li>
-      <li>Strategic planning for smooth migration processes</li>
-    </ul>
-  </div>
-  <div class="service-item">
-    <h3> Integration Support</h3>
-    <ul>
-     <li>Intercultural coaching and adaptation support</li>
-      <li>Workshops to build inclusive communities and workplaces</li>
-    </ul>
-  </div>
-  <div class="service-item">
-    <h3>International Recruitment</h3>
-     <ul>
-      <li> Attract and onboard global talent efficiently</li>
-      <li>Cross-cultural recruitment strategies and HR training</li>
-    </ul>
-  </div>
-  <div class="service-item">
-    <h3>Training & Workshops</h3>
-   <ul>
-      <li>Intercultural communication and cultural sensitivity programs</li>
-      <li>Tailored sessions for teams in diverse environments</li>
-    </ul>
-  </div>
-</section>
-
-
-<!-- Impressum -->
-<section id="impressum">
-  <h2>Contact Me</h2>
-  <p>
-      Cyriac Panackal Consulting<br>
-      Feel free to <a class="btn" onclick="openForm()">Drop a message</a>
-     
-  </p>
-</section>
-
-<!-- Contact Form -->
-<div id="contactForm" class="form-popup">
-  <div class="form-container">
-    <h3>Send me a message</h3>
-    <input type="text" id="name" placeholder="Your Name" required>
-    <input type="email" id="email" placeholder="Your Email" required>
-    <textarea id="message" placeholder="Your Message" required></textarea>
-    <button type="button" class="btn-main" onclick="sendEmail()">Send</button>
-    <button type="button" class="btn-cancel" onclick="closeForm()">Close</button>
-  </div>
-</div>
-
-<!-- Footer -->
-<footer>
-  <p>© 2025 Cyriac Panackal Consulting</p>
-  <p>
-    <a href="https://www.linkedin.com/in/cyriac-panackal-b62a0ab6/" target="_blank">LinkedIn</a> |
-    <a href="mailto:cyriac@panackal.de">Email</a>
-  </p>
-</footer>
-
-<!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-<script>
-
- (function() { emailjs.init("ITXZhTxzoNhcgBkSe"); })();
-
-  // Popup Form
-  function openForm() {
-    document.getElementById("contactForm").classList.add("show");
-  }
-  function closeForm() {
-    document.getElementById("contactForm").classList.remove("show");
-  }
-
-  // Hamburger menu toggle
-  function toggleMenu() {
-    document.getElementById("navLinks").classList.toggle("show");
-  }
-
-  // Send email via EmailJS
-  function sendEmail() {
-    var name = document.getElementById("name").value;
-    var email = document.getElementById("email").value;
-    var message = document.getElementById("message").value;
-
-    if(!name || !email || !message) {
-      alert("Please fill all fields");
-      return;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cyriac Panackal Consulting</title>
+  <link rel="icon" href="profilepic.jpg" />
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Open+Sans:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #1e40af;
+      --gradient: linear-gradient(135deg, #1e40af, #3b82f6);
+      --bg: #f3f6fd;
+      --text: #1d1d1f;
+      --max-width: 1100px;
+
+      /* animation */
+      --nod-duration: 1.05s;
+      --nod-angle: 30deg;
+      --nod-ease: cubic-bezier(.25,.9,.2,1);
+      --window-duration: 1.05s;
+      --window-angle: -18deg;
     }
 
-    var templateParams = {
-      from_name: name,
-      from_email: email,
-      message: message
-    };
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 1.05em;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
 
-     emailjs.send("service_sysbf2f", "template_cwxhl09", templateParams)
-      .then(function(response) {
+    h1, h2, h3 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      color: #0a2540;
+      letter-spacing: -0.5px;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 12px 20px;
+      background: rgba(30,64,175,0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-width: var(--max-width);
+      margin: auto;
+      position: relative;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover { opacity: 0.8; }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.8em;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 60px 20px;
+      background: var(--gradient);
+      color: #fff;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 1s forwards;
+    }
+
+    .hero h1 { font-size: 2.6em; margin-bottom: 12px; }
+    .hero p { font-size: 1.2em; max-width: 700px; margin: 0 auto; opacity: 0.9; }
+
+    /* Sections */
+    section {
+      max-width: var(--max-width);
+      margin: 60px auto;
+      padding: 40px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      scroll-margin-top: 90px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-out;
+    }
+
+    section.show { opacity: 1; transform: translateY(0); }
+    h2 { color: var(--primary); font-size: 1.9em; margin-bottom: 18px; }
+
+    /* About */
+    .about-content {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .about-text { flex: 2; }
+    .about-img { flex: 1; display: flex; justify-content: flex-end; }
+    .about-img img {
+      max-width: 310px;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    /* Services */
+    .service-item {
+      background: #f9faff;
+      padding: 16px;
+      margin-bottom: 12px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .service-item h3 { color: var(--primary); margin-bottom: 6px; }
+    .service-item p { margin: 0; font-size: 0.95em; color: #333; }
+
+    /* Buttons */
+    .btn-main {
+      display: inline-block;
+      margin-top: 22px;
+      padding: 14px 34px;
+      background: var(--gradient);
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 32px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-main:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: var(--primary);
+      color: #fff;
+      margin-top: 60px;
+    }
+
+    footer a {
+      color: #fff;
+      margin: 0 10px;
+      font-size: 1.2em;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    footer a:hover { opacity: 0.7; }
+
+    /* Contact Form Popup */
+    .form-popup {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form-popup.show { display: flex; }
+
+    .form-container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 14px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+    }
+
+    .form-popup.show .form-container { transform: scale(1); }
+    .form-container h3 { margin-bottom: 16px; color: var(--primary); }
+    .form-container input, .form-container textarea {
+      width: 100%; padding: 10px; margin: 8px 0 16px;
+      border: 1px solid #ccc; border-radius: 8px; font-size: 1em;
+    }
+    .form-container textarea { resize: vertical; height: 120px; }
+    .btn-cancel {
+      background: #aaa; color: #fff; padding: 10px 20px;
+      border: none; border-radius: 24px; cursor: pointer; margin-left: 10px;
+    }
+    .btn-cancel:hover { background: #888; }
+
+    /* Read More toggle (mobile only) */
+    @media (min-width: 701px) {
+      #about-full { display: block !important; }
+      #readMoreLink { display: none; }
+    }
+
+    @media (max-width: 700px) {
+      .hero { flex-direction: column; }
+      .hero h1 { font-size: 1.8em; }
+      .hero p { font-size: 1em; }
+
+      .about-content { flex-direction: row; gap: 10px; }
+      .about-img img { width: 80px; height: 80px; border-radius: 8px; }
+
+      #about-full { display: none; }
+      #readMoreLink {
+        display: inline-block;
+        margin-top: 5px;
+        font-size: 0.9em;
+        color: #0077cc;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+
+      .nav-container { justify-content: flex-end; }
+      .menu-toggle { display: block; margin-left: auto; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        background: var(--primary);
+        padding: 12px;
+        border-radius: 8px;
+        width: 180px;
+        gap: 10px;
+      }
+      .nav-links.show { display: flex; }
+    }
+
+    /* Animations */
+    html { scroll-behavior: smooth; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About Me</a>
+        <a href="#services">Services</a>
+        <a class="btn" onclick="openForm()">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1>Cyriac Panackal Consulting</h1>
+    <p>Connecting People and Cultures.</p>
+  </div>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p id="about-short">Hello, I'm Cyriac Panackal, a freelance consultant specializing in migration, integration, and international recruitment.</p>
+        <p id="about-full">I support individuals and organizations in navigating complex migration processes, adapting to new cultural environments, and attracting and retaining international talent.<br><br>Drawing on experience across both public and private sectors, I provide tailored consulting, workshops, and training focused on intercultural communication, integration strategies, and effective international recruitment practices.<br><br>My goal is to create smooth, inclusive transitions that benefit both people and organizations.</p>
+        <a href="javascript:void(0)" id="readMoreLink" onclick="toggleReadMore()">Read More</a>
+        <br>
+        <button class="btn-main" onclick="openForm()">Contact Me</button>
+      </div>
+      <div class="about-img">
+        <img src="profilepic.jpg" alt="About Me Image">
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <h2>Services</h2>
+    <div class="service-item">
+      <h3>Migration Consulting</h3>
+      <ul>
+        <li>Guidance through visas, permits, and relocation</li>
+        <li>Strategic planning for smooth migration processes</li>
+      </ul>
+    </div>
+    <div class="service-item">
+      <h3>Integration Support</h3>
+      <ul>
+        <li>Intercultural coaching and adaptation support</li>
+        <li>Workshops to build inclusive communities</li>
+      </ul>
+    </div>
+    <div class="service-item">
+      <h3>International Recruitment</h3>
+      <ul>
+        <li>Attract and onboard global talent efficiently</li>
+        <li>Cross-cultural recruitment strategies and HR training</li>
+      </ul>
+    </div>
+    <div class="service-item">
+      <h3>Training & Workshops</h3>
+      <ul>
+        <li>Intercultural communication programs</li>
+        <li>Tailored sessions for diverse teams</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="impressum">
+    <h2>Contact Me</h2>
+      Cyriac Panackal Consulting<br>
+      Address: Lütterzer Str. 2, 36041 Fulda<br>
+      Email: cyriac@panackal.de<br>
+      Contact: +49 1744705695<br><br>
+
+      Feel free to <a class="btn" onclick="openForm()">Contact</a>
+    </p>
+  </section>
+
+  <!-- Popup Form -->
+  <div id="contactForm" class="form-popup">
+    <div class="form-container">
+      <h3>Send me a message</h3>
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <textarea id="message" placeholder="Your Message" required></textarea>
+      <button type="button" class="btn-main" onclick="sendEmail()">Send</button>
+      <button type="button" class="btn-cancel" onclick="closeForm()">Close</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Cyriac Panackal Consulting</p>
+    <p>
+      <a href="https://www.linkedin.com/in/cyriac-panackal-b62a0ab6/" target="_blank">LinkedIn</a> |
+      <a href="mailto:cyriac@panackal.de">Email</a>
+    </p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function() { emailjs.init("ITXZhTxzoNhcgBkSe"); })();
+
+    function openForm() {
+      document.getElementById("contactForm").classList.add("show");
+    }
+    function closeForm() {
+      document.getElementById("contactForm").classList.remove("show");
+    }
+
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("show");
+    }
+
+    function sendEmail() {
+      var name = document.getElementById("name").value;
+      var email = document.getElementById("email").value;
+      var message = document.getElementById("message").value;
+
+      if(!name || !email || !message) {
+        alert("Please fill all fields");
+        return;
+      }
+
+      var params = { from_name: name, from_email: email, message: message };
+
+      emailjs.send("service_sysbf2f", "template_cwxhl09", params).then(function() {
         alert("Message sent successfully!");
         closeForm();
         document.getElementById("name").value = "";
@@ -547,34 +409,33 @@ context.
         alert("Failed to send message. Please try again.");
         console.log(error);
       });
-  }
+    }
 
-  // Scroll animation for sections
-  function revealSections() {
-    const sections = document.querySelectorAll("section");
-    const windowHeight = window.innerHeight;
-    sections.forEach(section => {
-      const top = section.getBoundingClientRect().top;
-      if(top < windowHeight - 100) section.classList.add("show");
-    });
-  }
-function toggleReadMore() {
-  const fullText = document.getElementById("about-full");
-  const link = document.getElementById("readMoreLink");
+    function revealSections() {
+      const sections = document.querySelectorAll("section");
+      const windowHeight = window.innerHeight;
+      sections.forEach(section => {
+        if(section.getBoundingClientRect().top < windowHeight - 100) {
+          section.classList.add("show");
+        }
+      });
+    }
 
-  if (fullText.style.display === "none" || fullText.style.display === "") {
-    fullText.style.display = "block";
-    link.innerText = "Read Less";
-  } else {
-    fullText.style.display = "none";
-    link.innerText = "Read More";
-  }
-}
+    function toggleReadMore() {
+      const fullText = document.getElementById("about-full");
+      const link = document.getElementById("readMoreLink");
 
+      if (fullText.style.display === "none" || fullText.style.display === "") {
+        fullText.style.display = "block";
+        link.innerText = "Read Less";
+      } else {
+        fullText.style.display = "none";
+        link.innerText = "Read More";
+      }
+    }
 
-  window.addEventListener("scroll", revealSections);
-  window.addEventListener("load", revealSections);
-</script>
-
+    window.addEventListener("scroll", revealSections);
+    window.addEventListener("load", revealSections);
+  </script>
 </body>
 </html>
