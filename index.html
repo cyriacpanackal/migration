@@ -135,13 +135,53 @@
     }
 
     /* Services */
-    .service-item {
-      background: #f9faff;
-      padding: 16px;
-      margin-bottom: 12px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
+   /* Service item layout */
+.service-item {
+  background: #f9faff;
+  padding: 24px;
+  margin-bottom: 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.service-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Text area */
+.service-text {
+  flex: 1;
+}
+
+/* Animation area */
+.service-anim {
+  flex: 0 0 40%; /* fixed 40% width */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.service-anim svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive: stack vertically on phone */
+@media (max-width: 700px) {
+  .service-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .service-anim {
+    flex: none;
+    width: 100%;
+    margin-top: 12px;
+  }
+}
+
 
     .service-item h3 { color: var(--primary); margin-bottom: 6px; }
     .service-item p { margin: 0; font-size: 0.95em; color: #333; }
@@ -355,10 +395,20 @@
   </section>
 
   <!-- Services -->
-  <section id="services">
-    <h2>Services</h2>
-    <div class="service-item">
-     <div class="nod-kipp-wrap">
+ <section id="services">
+  <h2>Services</h2>
+
+  <div class="service-item">
+    <div class="service-content">
+      <div class="service-text">
+        <h3>Migration Consulting</h3>
+        <ul>
+          <li>Guidance through visas, permits, and relocation</li>
+          <li>Strategic planning for smooth migration processes</li>
+        </ul>
+      </div>
+      <div class="service-anim">
+        <!-- Person SVG -->
         <svg class="person-svg" viewBox="0 0 180 220">
           <g class="head">
             <circle cx="90" cy="74" r="30" fill="#f2d7c9" stroke="#e8bfa6"/>
@@ -366,14 +416,20 @@
           <rect x="70" y="100" width="40" height="80" rx="10" fill="#f5f7ff" stroke="#d7e2ff"/>
         </svg>
       </div>
-      <h3>Migration Consulting</h3>
-      <ul>
-        <li>Guidance through visas, permits, and relocation</li>
-        <li>Strategic planning for smooth migration processes</li>
-      </ul>
     </div>
-    <div class="service-item">
-      <div class="nod-kipp-wrap">
+  </div>
+
+  <div class="service-item">
+    <div class="service-content">
+      <div class="service-text">
+        <h3>Integration Support</h3>
+        <ul>
+          <li>Intercultural coaching and adaptation support</li>
+          <li>Workshops to build inclusive communities</li>
+        </ul>
+      </div>
+      <div class="service-anim">
+        <!-- Window SVG -->
         <svg class="window-svg" viewBox="0 0 120 160">
           <rect x="5" y="5" width="110" height="150" rx="6" class="frame"/>
           <g class="sash">
@@ -382,27 +438,35 @@
           </g>
         </svg>
       </div>
-      <h3>Integration Support</h3>
-      <ul>
-        <li>Intercultural coaching and adaptation support</li>
-        <li>Workshops to build inclusive communities</li>
-      </ul>
     </div>
-    <div class="service-item">
-      <h3>International Recruitment</h3>
-      <ul>
-        <li>Attract and onboard global talent efficiently</li>
-        <li>Cross-cultural recruitment strategies and HR training</li>
-      </ul>
+  </div>
+
+  <!-- Keep others as text only or add more anims -->
+  <div class="service-item">
+    <div class="service-content">
+      <div class="service-text">
+        <h3>International Recruitment</h3>
+        <ul>
+          <li>Attract and onboard global talent efficiently</li>
+          <li>Cross-cultural recruitment strategies and HR training</li>
+        </ul>
+      </div>
     </div>
-    <div class="service-item">
-      <h3>Training & Workshops</h3>
-      <ul>
-        <li>Intercultural communication programs</li>
-        <li>Tailored sessions for diverse teams</li>
-      </ul>
+  </div>
+
+  <div class="service-item">
+    <div class="service-content">
+      <div class="service-text">
+        <h3>Training & Workshops</h3>
+        <ul>
+          <li>Intercultural communication programs</li>
+          <li>Tailored sessions for diverse teams</li>
+        </ul>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- Contact -->
   <section id="impressum">
