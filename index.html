@@ -37,7 +37,6 @@
     h1, h2, h3 {
       font-family: 'Poppins', sans-serif;
       font-weight: 700;
-      color: #0a2540;
       letter-spacing: -0.5px;
     }
 
@@ -427,6 +426,18 @@ header {
 
   .frame { fill:#fff; stroke:#ccd7ff; stroke-width:3; }
   .glass { fill:#dbeafe; }
+    a.btn {
+  color: var(--primary);       /* your theme color */
+  text-decoration: underline;   /* show it's clickable */
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s, text-decoration 0.2s;
+}
+
+a.btn:hover {
+  color: #0a2540;              /* slightly darker on hover */
+  text-decoration: none;       /* optional hover effect */
+}
   </style>
 </head>
 <body>
