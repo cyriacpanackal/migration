@@ -134,34 +134,45 @@
       object-fit: cover;
     }
 
-    /* Services */
-   /* Service item layout */
-.service-item {
-  background: #f9faff;
-  padding: 24px;
-  margin-bottom: 20px;
-  border-radius: 14px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+   /* Services Layout */
+#services {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
-.service-content {
+.service-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+  background: #fff;
+  padding: 28px 36px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
-/* Text area */
 .service-text {
-  flex: 1;
+  flex: 1 1 60%;
 }
 
-/* Animation area */
+.service-text h3 {
+  font-size: 1.5em;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.service-text p {
+  font-size: 1em;
+  color: #333;
+  line-height: 1.6;
+}
+
 .service-anim {
-  flex: 0 0 40%; /* fixed 40% width */
+  flex: 1 1 40%;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .service-anim svg {
@@ -169,18 +180,25 @@
   height: auto;
 }
 
-/* Responsive: stack vertically on phone */
-@media (max-width: 700px) {
-  .service-content {
+/* Placeholder icons until animations are added */
+.service-anim.placeholder {
+  font-size: 2.5em;
+  color: var(--primary);
+}
+
+/* Responsive (stack on mobile) */
+@media (max-width: 768px) {
+  .service-card {
     flex-direction: column;
     text-align: center;
+    padding: 20px;
   }
+
   .service-anim {
-    flex: none;
-    width: 100%;
-    margin-top: 12px;
+    margin-top: 20px;
   }
 }
+
 
 
     .service-item h3 { color: var(--primary); margin-bottom: 6px; }
@@ -395,74 +413,60 @@
   </section>
 
   <!-- Services -->
- <section id="services">
+ <!-- Services -->
+<section id="services">
   <h2>Services</h2>
 
-  <div class="service-item">
-    <div class="service-content">
-      <div class="service-text">
-        <h3>Migration Consulting</h3>
-        <ul>
-          <li>Guidance through visas, permits, and relocation</li>
-          <li>Strategic planning for smooth migration processes</li>
-        </ul>
-      </div>
-      <div class="service-anim">
-        <!-- Person SVG -->
-        <svg class="person-svg" viewBox="0 0 180 220">
-          <g class="head">
-            <circle cx="90" cy="74" r="30" fill="#f2d7c9" stroke="#e8bfa6"/>
-          </g>
-          <rect x="70" y="100" width="40" height="80" rx="10" fill="#f5f7ff" stroke="#d7e2ff"/>
-        </svg>
-      </div>
+  <div class="service-card">
+    <div class="service-text">
+      <h3>Migration Consulting</h3>
+      <p>Guidance through visas, permits, and relocation with clear strategies for smooth migration processes.</p>
+    </div>
+    <div class="service-anim">
+      <!-- Person Head Nod Animation -->
+      <svg class="person-svg" viewBox="0 0 180 220">
+        <g class="head">
+          <circle cx="90" cy="74" r="30" fill="#f2d7c9" stroke="#e8bfa6"/>
+        </g>
+        <rect x="70" y="100" width="40" height="80" rx="10" fill="#f5f7ff" stroke="#d7e2ff"/>
+      </svg>
     </div>
   </div>
 
-  <div class="service-item">
-    <div class="service-content">
-      <div class="service-text">
-        <h3>Integration Support</h3>
-        <ul>
-          <li>Intercultural coaching and adaptation support</li>
-          <li>Workshops to build inclusive communities</li>
-        </ul>
-      </div>
-      <div class="service-anim">
-        <!-- Window SVG -->
-        <svg class="window-svg" viewBox="0 0 120 160">
-          <rect x="5" y="5" width="110" height="150" rx="6" class="frame"/>
-          <g class="sash">
-            <rect x="15" y="15" width="90" height="130" rx="4" fill="#eef4ff" stroke="#bcd1ff"/>
-            <rect x="20" y="20" width="80" height="120" rx="2" class="glass"/>
-          </g>
-        </svg>
-      </div>
+  <div class="service-card">
+    <div class="service-text">
+      <h3>Integration Support</h3>
+      <p>Intercultural coaching, adaptation support, and workshops to build inclusive communities.</p>
+    </div>
+    <div class="service-anim">
+      <!-- German Tilt Window Animation -->
+      <svg class="window-svg" viewBox="0 0 120 160">
+        <rect x="5" y="5" width="110" height="150" rx="6" class="frame"/>
+        <g class="sash">
+          <rect x="15" y="15" width="90" height="130" rx="4" fill="#eef4ff" stroke="#bcd1ff"/>
+          <rect x="20" y="20" width="80" height="120" rx="2" class="glass"/>
+        </g>
+      </svg>
     </div>
   </div>
 
-  <!-- Keep others as text only or add more anims -->
-  <div class="service-item">
-    <div class="service-content">
-      <div class="service-text">
-        <h3>International Recruitment</h3>
-        <ul>
-          <li>Attract and onboard global talent efficiently</li>
-          <li>Cross-cultural recruitment strategies and HR training</li>
-        </ul>
-      </div>
+  <div class="service-card">
+    <div class="service-text">
+      <h3>International Recruitment</h3>
+      <p>Attract and onboard global talent with cross-cultural recruitment strategies and HR training.</p>
+    </div>
+    <div class="service-anim placeholder">
+      🌍
     </div>
   </div>
 
-  <div class="service-item">
-    <div class="service-content">
-      <div class="service-text">
-        <h3>Training & Workshops</h3>
-        <ul>
-          <li>Intercultural communication programs</li>
-          <li>Tailored sessions for diverse teams</li>
-        </ul>
-      </div>
+  <div class="service-card">
+    <div class="service-text">
+      <h3>Training & Workshops</h3>
+      <p>Interactive sessions on intercultural communication tailored to diverse teams and organizations.</p>
+    </div>
+    <div class="service-anim placeholder">
+      🎓
     </div>
   </div>
 </section>
