@@ -317,7 +317,6 @@ html { scroll-behavior:smooth; }
     <div class="nav-links" id="navLinks">
       <a href="#about">About Me</a>
       <a href="#services">Services</a>
-      <a href="#impressum">Impressum</a>
       <a class="btn" onclick="openForm()">Contact</a>
     </div>
   </div>
@@ -325,53 +324,7 @@ html { scroll-behavior:smooth; }
 
 <!-- Hero -->
 <div class="hero">
-  <img src="profilepic.jpg" alt="Profile Picture">
-  <div>
-    <h1>Cyriac Panackal Consulting</h1>
-    <p>Helping organizations navigate digital transformation, migration, and innovation.</p>
-  </div>
-</div>
-
-  <section id="about">
-  <h2>About Me</h2>
-  <div class="about-content">
-    <div class="about-text">
-      <!-- Short text always visible -->
-      <p id="about-short">
-       Hello, I'm Cyriac Panackal, a freelance consultant specializing in migration, integration, and international recruitment.
-      </p>
-
-      <!-- Full text (hidden on mobile, visible on desktop) -->
-      <p id="about-full">
-       I support
-individuals and organizations in navigating complex migration
-processes, adapting to new cultural environments, and attracting and
-retaining international talent. <br> <br>
-
-Drawing on experience across both public and private sectors, I
-provide tailored consulting, workshops, and training focused on
-intercultural communication, integration strategies, and effective
-international recruitment practices. My goal is to create smooth,
-inclusive transitions that benefit both people and organizations.<br> <br>
-
-I combine practical expertise with a personalized approach, helping
-clients achieve sustainable results in a global and culturally diverse
-context.
-      </p>
-
-      <!-- Read more text link (only for mobile) -->
-      <a href="javascript:void(0)" id="readMoreLink" onclick="toggleReadMore()">Read More</a>
-
-      <br>
-      <button class="btn-main" onclick="openForm()">Contact Me</button>
-    </div>
-    <div class="about-img">
-      <img src="profilepic.jpg" alt="About Me Image">
-    </div>
-  </div>
-</section>
-
-<div class="nod-kipp-wrap" aria-hidden="false">
+ <div class="nod-kipp-wrap" aria-hidden="false">
   <!-- Person (SVG) -->
   <svg class="person-svg" viewBox="0 0 180 220" role="img" aria-label="Animated person nodding">
     <!-- shadow -->
@@ -438,6 +391,50 @@ context.
     <rect x="6" y="96" width="108" height="12" rx="4" fill="#eef4ff" stroke="#d7e8ff" stroke-width="1"></rect>
   </svg>
 </div>
+  <div>
+    <h1>Cyriac Panackal Consulting</h1>
+    <p>Connecting People and cultures.</p>
+  </div>
+</div>
+
+  <section id="about">
+  <h2>About Me</h2>
+  <div class="about-content">
+    <div class="about-text">
+      <!-- Short text always visible -->
+      <p id="about-short">
+       Hello, I'm Cyriac Panackal, a freelance consultant specializing in migration, integration, and international recruitment.
+      </p>
+
+      <!-- Full text (hidden on mobile, visible on desktop) -->
+      <p id="about-full">
+       I support
+individuals and organizations in navigating complex migration
+processes, adapting to new cultural environments, and attracting and
+retaining international talent. <br> <br>
+
+Drawing on experience across both public and private sectors, I
+provide tailored consulting, workshops, and training focused on
+intercultural communication, integration strategies, and effective
+international recruitment practices. My goal is to create smooth,
+inclusive transitions that benefit both people and organizations.<br> <br>
+
+I combine practical expertise with a personalized approach, helping
+clients achieve sustainable results in a global and culturally diverse
+context.
+      </p>
+
+      <!-- Read more text link (only for mobile) -->
+      <a href="javascript:void(0)" id="readMoreLink" onclick="toggleReadMore()">Read More</a>
+
+      <br>
+      <button class="btn-main" onclick="openForm()">Contact Me</button>
+    </div>
+    <div class="about-img">
+      <img src="profilepic.jpg" alt="About Me Image">
+    </div>
+  </div>
+</section>
 
   <section id="services">
   <h2>Services</h2>
@@ -474,13 +471,11 @@ context.
 
 <!-- Impressum -->
 <section id="impressum">
-  <h2>Impressum</h2>
+  <h2>Contact Me</h2>
   <p>
       Cyriac Panackal Consulting<br>
-      Address: Lütterzer Str. 2, 36041 Fulda<br>
-      Email: cyriac@panackal.de<br>
-      Contact: +49 1744705695<br><br>
-      Responsible for content: Cyriac Panackal
+      Feel free to <a class="btn" onclick="openForm()">Drop a message</a>
+     
   </p>
 </section>
 
