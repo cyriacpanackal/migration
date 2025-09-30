@@ -1,646 +1,1263 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cyriac Panackal Consulting</title>
-  <link rel="icon" href="profilepic.jpg" />
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Open+Sans:wght@400;500&family=Poppins:wght@600;700&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyriac Panackal - Migration & Integration Consulting</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <style>
-    :root {
-      --primary: #1e40af;
-      --gradient: linear-gradient(135deg, #1e40af, #3b82f6);
-      --bg: #f3f6fd;
-      --text: #1d1d1f;
-      --max-width: 1100px;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8f1ff 50%, #f5f8ff 100%);
+            color: #2d3748;
+        }
 
-      /* animation */
-      --nod-duration: 1.05s;
-      --nod-angle: 30deg;
-      --nod-ease: cubic-bezier(.25,.9,.2,1);
-      --window-duration: 1.05s;
-      --window-angle: -18deg;
-    }
+        /* Animated gradient background */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #a8c0ff 0%, #c4d7ff 25%, #b8d4ff 50%, #d4e4ff 75%, #e0edff 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            opacity: 0.3;
+            z-index: 0;
+        }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      font-size: 1.05em;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-    h1, h2, h3 {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-    }
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.85);
+            border-bottom: 1px solid rgba(168, 192, 255, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
 
-   /* Header */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: rgba(30,64,175,0.95);
-  backdrop-filter: blur(10px);
-  padding: 12px 24px;
-  display: flex;
-  justify-content: end;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.15);
-}
+        nav.scrolled {
+            padding: 1rem 5%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 20px rgba(168, 192, 255, 0.15);
+        }
 
-.nav-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: var(--max-width);
-  margin-right: 20%;
-}
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.logo img {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 12px;
-}
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #5b8def 0%, #7ba3f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-.nav-links {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
 
-.nav-links a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-}
+        .nav-links a {
+            color: #2d3748;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
 
-.menu-toggle {
-  display: none;
-  font-size: 1.8em;
-  cursor: pointer;
-}
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #5b8def 0%, #7ba3f7 100%);
+            transition: width 0.3s ease;
+        }
 
-/* Hero */
-.hero {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
-  padding: 60px 20px;
-  background: white;
-  color: var(--primary);
-  margin: 20px auto 0 auto; /* center hero content */
-}
+        .nav-links a:hover::after {
+            width: 100%;
+        }
 
-.hero-left {
-  flex: 0 0 auto;
-}
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5%;
+            overflow: hidden;
+        }
 
-.hero-logo {
-  width: 80px;
-  height: 80px;
-  border-radius: 12px;
-  object-fit: cover;
-}
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            width: 100%;
+            text-align: center;
+        }
 
-.hero-right {
-  flex: 1 1 auto;
-}
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #2d3748 0%, #5b8def 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease;
+        }
 
-.hero-right h1 {
-  font-size: 2.2em;
-  margin-bottom: 12px;
-  line-height: 1.2;
-}
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: #5a6c7d;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
 
-.hero-right p {
-  font-size: 1.1em;
-  opacity: 0.9;
-}
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: linear-gradient(135deg, #5b8def 0%, #7ba3f7 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.4s backwards;
+            box-shadow: 0 10px 30px rgba(91, 141, 239, 0.3);
+        }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .hero {
-    flex-direction: column;
-    text-align: center;
-  }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(91, 141, 239, 0.5);
+        }
 
-  .hero-logo {
-    width: 70px;
-    height: 70px;
-    margin-bottom: 16px;
-  }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-  .hero-right h1 {
-    font-size: 1.8em;
-  }
+        /* About Section */
+        .about {
+            position: relative;
+            padding: 8rem 5%;
+            background: linear-gradient(180deg, transparent 0%, rgba(168, 192, 255, 0.1) 100%);
+        }
 
-  .hero-right p {
-    font-size: 1em;
-  }
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
 
-  .menu-toggle { display: block; color: white; }
-  .nav-links { display: none; flex-direction: column; gap: 10px; }
-  .nav-links.show { display: flex; }
-}
+        .profile-photo-container {
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+        }
 
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 4px solid rgba(91, 141, 239, 0.3);
+            box-shadow: 0 10px 30px rgba(91, 141, 239, 0.2);
+            transition: all 0.3s ease;
+            object-fit: cover;
+            background: linear-gradient(135deg, #a8c0ff 0%, #c4d7ff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: rgba(91, 141, 239, 0.4);
+        }
 
+        .profile-photo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(91, 141, 239, 0.3);
+        }
 
-    /* Sections */
-    section {
-      max-width: var(--max-width);
-      margin: 60px auto;
-      padding: 40px;
-      background: #fff;
-      border-radius: 20px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-      scroll-margin-top: 90px;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s ease-out;
-    }
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
 
-    section.show { opacity: 1; transform: translateY(0); }
-    h2 { color: var(--primary); font-size: 1.9em; margin-bottom: 18px; }
+        .about h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #2d3748 0%, #5b8def 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-    /* About */
-    .about-content {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 20px;
-    }
+        .about p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #5a6c7d;
+            margin-bottom: 1.5rem;
+        }
 
-    .about-text { flex: 2; }
-    .about-img { flex: 1; display: flex; justify-content: flex-end; }
-    .about-img img {
-      max-width: 310px;
-      border-radius: 12px;
-      object-fit: cover;
-    }
+        .about-text-expandable {
+            display: none;
+        }
 
-   /* Services Layout */
-#services {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
+        .read-more-btn {
+            display: none;
+            margin-top: 1.5rem;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #5b8def 0%, #7ba3f7 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(91, 141, 239, 0.3);
+        }
 
-.service-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  background: #fff;
-  padding: 28px 36px;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-}
+        .read-more-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(91, 141, 239, 0.4);
+        }
 
-.service-text {
-  flex: 1 1 60%;
-}
+        @media (max-width: 768px) {
+            .about-text-expandable {
+                display: block;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease;
+            }
 
-.service-text h3 {
-  font-size: 1.5em;
-  color: var(--primary);
-  margin-bottom: 10px;
-}
+            .about-text-expandable.expanded {
+                max-height: 500px;
+            }
 
-.service-text p {
-  font-size: 1em;
-  color: #333;
-  line-height: 1.6;
-}
+            .read-more-btn {
+                display: inline-block;
+            }
+        }
 
-.service-anim {
-  flex: 1 1 40%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+        /* Integration Animation Section */
+        .integration-section {
+            position: relative;
+            padding: 8rem 5%;
+            background: linear-gradient(180deg, transparent 0%, rgba(168, 192, 255, 0.08) 100%);
+            overflow: hidden;
+        }
 
-.service-anim svg {
-  max-width: 100%;
-  height: auto;
-}
+        .integration-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
 
-/* Placeholder icons until animations are added */
-.service-anim.placeholder {
-  font-size: 2.5em;
-  color: var(--primary);
-}
+        .integration-content h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+            text-align: center;
+            background: linear-gradient(135deg, #2d3748 0%, #5b8def 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-/* Responsive (stack on mobile) */
-@media (max-width: 768px) {
-  .service-card {
-    flex-direction: column;
-    text-align: center;
-    padding: 20px;
-  }
+        .integration-subtitle {
+            text-align: center;
+            color: #5a6c7d;
+            font-size: 1.1rem;
+            margin-bottom: 4rem;
+        }
 
-  .service-anim {
-    margin-top: 20px;
-  }
-}
+        .carousel-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
 
+        .carousel-slide {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
 
+        .carousel-slide.active {
+            display: block;
+        }
 
-    .service-item h3 { color: var(--primary); margin-bottom: 6px; }
-    .service-item p { margin: 0; font-size: 0.95em; color: #333; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-    /* Buttons */
-    .btn-main {
-      display: inline-block;
-      margin-top: 22px;
-      padding: 14px 34px;
-      background: var(--gradient);
-      color: #fff;
-      font-weight: 600;
-      text-decoration: none;
-      border-radius: 32px;
-      transition: transform 0.2s, box-shadow 0.2s;
-      cursor: pointer;
-    }
+        .comparison-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(168, 192, 255, 0.3);
+        }
 
-    .btn-main:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
-    }
+        .comparison-side {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 20px;
+            background: white;
+            transition: transform 0.3s ease;
+        }
 
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      background: var(--primary);
-      color: #fff;
-      margin-top: 60px;
-    }
+        .comparison-side:hover {
+            transform: translateY(-5px);
+        }
 
-    footer a {
-      color: #fff;
-      margin: 0 10px;
-      font-size: 1.2em;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
-    footer a:hover { opacity: 0.7; }
+        .comparison-side.germany {
+            border: 3px solid #5b8def;
+            box-shadow: 0 10px 30px rgba(91, 141, 239, 0.2);
+        }
 
-    /* Contact Form Popup */
-    .form-popup {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 2000;
-      justify-content: center;
-      align-items: center;
-    }
+        .comparison-side.other {
+            border: 3px solid #ddd;
+        }
 
-    .form-popup.show { display: flex; }
+        .comparison-label {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #2d3748;
+        }
 
-    .form-container {
-      background: #fff;
-      padding: 30px;
-      border-radius: 14px;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-      transform: scale(0.9);
-      transition: transform 0.3s ease;
-    }
+        .comparison-label.germany {
+            color: #5b8def;
+        }
 
-    .form-popup.show .form-container { transform: scale(1); }
-    .form-container h3 { margin-bottom: 16px; color: var(--primary); }
-    .form-container input, .form-container textarea {
-      width: 100%; padding: 10px; margin: 8px 0 16px;
-      border: 1px solid #ccc; border-radius: 8px; font-size: 1em;
-    }
-    .form-container textarea { resize: vertical; height: 120px; }
-    .btn-cancel {
-      background: #aaa; color: #fff; padding: 10px 20px;
-      border: none; border-radius: 24px; cursor: pointer; margin-left: 10px;
-    }
-    .btn-cancel:hover { background: #888; }
+        .visual-container {
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
 
-    /* Read More toggle (mobile only) */
-    @media (min-width: 701px) {
-      #about-full { display: block !important; }
-      #readMoreLink { display: none; }
-    }
+        /* Window Animation */
+        .window {
+            width: 200px;
+            height: 250px;
+            position: relative;
+            perspective: 1000px;
+        }
 
-    @media (max-width: 700px) {
-      .hero { flex-direction: column; }
-      .hero h1 { font-size: 1.8em; }
-      .hero p { font-size: 1em; }
+        .window-frame {
+            width: 100%;
+            height: 100%;
+            background: #8B4513;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
 
-      .about-content { flex-direction: row; gap: 10px; }
-      .about-img img { width: 80px; height: 80px; border-radius: 8px; }
+        .window-glass {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #87CEEB 0%, #B0E0E6 100%);
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
 
-      #about-full { display: none; }
-      #readMoreLink {
-        display: inline-block;
-        margin-top: 5px;
-        font-size: 0.9em;
-        color: #0077cc;
-        cursor: pointer;
-        text-decoration: underline;
-      }
+        .window-divider {
+            position: absolute;
+            background: #8B4513;
+        }
 
-      .nav-container { justify-content: flex-end; }
-      .menu-toggle { display: block; margin-left: auto; }
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 10px;
-        background: var(--primary);
-        padding: 12px;
-        border-radius: 8px;
-        width: 180px;
-        gap: 10px;
-      }
-      .nav-links.show { display: flex; }
-    }
+        .window-divider.vertical {
+            width: 8px;
+            height: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
 
-    /* Animations */
-    html { scroll-behavior: smooth; }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-     .nod-kipp-wrap {
-    display: flex;
-    gap: 40px;
-    align-items: center;
-    justify-content: center;
-    margin: 32px auto;
-    max-width: 900px;
-  }
+        .window-divider.horizontal {
+            height: 8px;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
 
-  :root {
-    --nod-duration: 1.2s;
-    --nod-angle: 28deg;
-    --window-duration: 1.2s;
-    --window-angle: -22deg; /* inward tilt */
-    --accent: #1e40af;
-  }
+        .window-handle {
+            position: absolute;
+            width: 40px;
+            height: 12px;
+            background: #666;
+            border-radius: 6px;
+            right: 15px;
+            top: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-  .person-svg { width: 150px; height: auto; }
-  .window-svg { width: 150px; height: auto; }
+        .window.tilt .window-glass {
+            transform-origin: top center;
+            animation: tiltWindow 4s ease-in-out infinite;
+        }
 
-  /* head nod */
-  .head {
-    transform-origin: 50% 80%;
-    animation: head-nod var(--nod-duration) cubic-bezier(.25,.9,.2,1) infinite;
-  }
-  @keyframes head-nod {
-    0%   { transform: rotate(0); }
-    20%  { transform: rotate(var(--nod-angle)); }
-    50%  { transform: rotate(calc(var(--nod-angle) * -0.6)); }
-    80%  { transform: rotate(var(--nod-angle)); }
-    100% { transform: rotate(0); }
-  }
+        @keyframes tiltWindow {
+            0%, 100% { transform: rotateX(0deg); }
+            50% { transform: rotateX(20deg); }
+        }
 
-  /* window tilt (hinged at bottom edge) */
-  .sash {
-    transform-origin: 50% 100%; /* pivot at bottom center */
-    animation: window-kipp var(--window-duration) cubic-bezier(.25,.9,.2,1) infinite;
-    transform-box: fill-box;
-  }
-  @keyframes window-kipp {
-    0%   { transform: rotate(0deg); }
-    20%  { transform: rotate(var(--window-angle)); } /* tilt inward */
-    50%  { transform: rotate(calc(var(--window-angle) * 0.3)); }
-    80%  { transform: rotate(var(--window-angle)); }
-    100% { transform: rotate(0deg); }
-  }
+        .window.slide .window-glass {
+            animation: slideWindow 4s ease-in-out infinite;
+        }
 
-  .frame { fill:#fff; stroke:#ccd7ff; stroke-width:3; }
-  .glass { fill:#dbeafe; }
-    a.btn {
-  color: var(--primary);       /* your theme color */
-  text-decoration: underline;   /* show it's clickable */
-  font-weight: 600;
-  cursor: pointer;
-  transition: color 0.2s, text-decoration 0.2s;
-}
+        @keyframes slideWindow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
 
-a.btn:hover {
-  color: #0a2540;              /* slightly darker on hover */
-  text-decoration: none;       /* optional hover effect */
-}
-  </style>
+        /* Food Animation */
+        .food-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .food-item {
+            font-size: 4rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .food-item:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .food-item:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-15px) scale(1.1); }
+        }
+
+        /* Bike Animation */
+        .bike {
+            font-size: 5rem;
+            animation: bikeRide 3s ease-in-out infinite;
+        }
+
+        @keyframes bikeRide {
+            0%, 100% { transform: translateX(-30px); }
+            50% { transform: translateX(30px); }
+        }
+
+        .bike-lane {
+            width: 180px;
+            height: 8px;
+            background: #5b8def;
+            border-radius: 4px;
+            margin-top: 1rem;
+            position: relative;
+        }
+
+        .bike-lane::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent 0%, transparent 45%, white 45%, white 55%, transparent 55%, transparent 100%);
+            background-size: 30px 100%;
+            animation: roadMove 1s linear infinite;
+        }
+
+        @keyframes roadMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 30px 0; }
+        }
+
+        /* Trash Animation */
+        .trash-bins {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .trash-bin {
+            width: 60px;
+            height: 80px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 8px;
+            font-size: 2rem;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .trash-bin:hover {
+            transform: translateY(-10px);
+        }
+
+        .trash-bin.yellow { background: #FFD700; }
+        .trash-bin.blue { background: #4169E1; }
+        .trash-bin.brown { background: #8B4513; }
+        .trash-bin.black { background: #333; }
+        .trash-bin.gray { background: #808080; }
+
+        .trash-bin-lid {
+            width: 100%;
+            height: 12px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        /* Navigation Dots */
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(91, 141, 239, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: #5b8def;
+            width: 40px;
+            border-radius: 6px;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: 2px solid #5b8def;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .carousel-nav:hover {
+            background: #5b8def;
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-nav.prev { left: -70px; }
+        .carousel-nav.next { right: -70px; }
+
+        @media (max-width: 768px) {
+            .comparison-box {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 1.5rem;
+            }
+
+            .window {
+                width: 150px;
+                height: 200px;
+            }
+
+            .food-item {
+                font-size: 3rem;
+            }
+
+            .bike {
+                font-size: 4rem;
+            }
+
+            .carousel-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .carousel-nav.prev { left: 10px; }
+            .carousel-nav.next { right: 10px; }
+        }
+        .services {
+            position: relative;
+            padding: 8rem 5%;
+        }
+
+        .services-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .services h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 4rem;
+            text-align: center;
+            background: linear-gradient(135deg, #2d3748 0%, #5b8def 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(168, 192, 255, 0.3);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.8);
+            border-color: rgba(91, 141, 239, 0.5);
+            box-shadow: 0 20px 40px rgba(91, 141, 239, 0.2);
+        }
+
+        .service-animation {
+            height: 120px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .service-card p {
+            color: #5a6c7d;
+            line-height: 1.6;
+        }
+
+        /* Migration Animation - Passport */
+        .passport-animation {
+            position: relative;
+        }
+
+        .passport {
+            width: 80px;
+            height: 100px;
+            background: #8B0000;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            animation: passportFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes passportFloat {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        .visa-stamp {
+            position: absolute;
+            font-size: 2rem;
+            animation: stampAppear 4s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes stampAppear {
+            0%, 40% { opacity: 0; transform: scale(0) rotate(-45deg); }
+            50% { opacity: 1; transform: scale(1) rotate(0deg); }
+            90%, 100% { opacity: 0; transform: scale(0) rotate(45deg); }
+        }
+
+        /* Integration Animation - People connecting */
+        .integration-animation {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .person-icon {
+            font-size: 3rem;
+            animation: personBounce 2s ease-in-out infinite;
+        }
+
+        .person-icon:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .person-icon:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes personBounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-10px) scale(1.1); }
+        }
+
+        .handshake {
+            position: absolute;
+            font-size: 2.5rem;
+            animation: handshakePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes handshakePulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.3); opacity: 1; }
+        }
+
+        /* Recruitment Animation - Globe with people */
+        .recruitment-animation {
+            position: relative;
+        }
+
+        .globe {
+            font-size: 4rem;
+            animation: globeRotate 8s linear infinite;
+        }
+
+        @keyframes globeRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .flying-person {
+            position: absolute;
+            font-size: 2rem;
+            animation: flyAround 6s linear infinite;
+        }
+
+        @keyframes flyAround {
+            0% { 
+                top: 20%;
+                left: 10%;
+                transform: rotate(0deg);
+            }
+            25% { 
+                top: 10%;
+                left: 80%;
+                transform: rotate(90deg);
+            }
+            50% { 
+                top: 70%;
+                left: 90%;
+                transform: rotate(180deg);
+            }
+            75% { 
+                top: 80%;
+                left: 20%;
+                transform: rotate(270deg);
+            }
+            100% { 
+                top: 20%;
+                left: 10%;
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Training Animation - Speaking bubbles */
+        .training-animation {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .speech-bubble {
+            font-size: 2.5rem;
+            animation: bubbleFloat 3s ease-in-out infinite;
+        }
+
+        .speech-bubble:nth-child(1) { animation-delay: 0s; }
+        .speech-bubble:nth-child(2) { animation-delay: 0.5s; }
+        .speech-bubble:nth-child(3) { animation-delay: 1s; }
+
+        @keyframes bubbleFloat {
+            0%, 100% { 
+                transform: translateY(0) scale(1);
+                opacity: 0.7;
+            }
+            50% { 
+                transform: translateY(-20px) scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        /* Contact Section */
+        .contact {
+            position: relative;
+            padding: 8rem 5%;
+            background: linear-gradient(180deg, rgba(168, 192, 255, 0.1) 0%, transparent 100%);
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #2d3748 0%, #5b8def 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact p {
+            font-size: 1.2rem;
+            color: #5a6c7d;
+            margin-bottom: 3rem;
+        }
+
+        /* Footer */
+        footer {
+            position: relative;
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(168, 192, 255, 0.2);
+            color: #5a6c7d;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Floating elements animation */
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
 </head>
 <body>
-<!-- Header -->
-<header>
-  <div class="nav-container">
-    <nav class="nav-links" id="navLinks">
-      <a href="#about">About Me</a>
-      <a href="#services">Services</a>
-      <a onclick="openForm()">Contact</a>
+    <div class="bg-gradient"></div>
+
+    <nav id="nav">
+        <div class="nav-content">
+            <div class="logo">Cyriac Panackal</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#integration">Integration</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
     </nav>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-  </div>
-</header>
 
-<!-- Hero -->
-<section class="hero">
-  <div class="hero-left">
-    <img src="logo.png" alt="Logo" class="hero-logo">
-  </div>
-  <div class="hero-right">
-    <h1>Cyriac Panackal Consulting</h1>
-    <p>Connecting People and Cultures.</p>
-  </div>
-</section>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="floating">Connecting People<br>and Cultures</h1>
+            <p class="subtitle">Migration | Integration | International Recruitment</p>
+            <a href="#contact" class="cta-button">Let's Connect</a>
+        </div>
+    </section>
 
+    <section id="about" class="about">
+        <div class="about-content">
+            <div class="profile-photo-container">
+                <div class="profile-photo" id="profilePhoto">
+                    👤
+                </div>
+            </div>
+            <h2>Hello, I'm Cyriac Panackal</h2>
+            <p>A freelance consultant specializing in migration, integration, and international recruitment.</p>
+            <div class="about-text-expandable" id="aboutExpand">
+                <p>I support individuals and organizations in navigating complex migration processes, adapting to new cultural environments, and attracting and retaining international talent.</p>
+                <p>Drawing on experience across both public and private sectors, I provide tailored consulting, workshops, and training focused on intercultural communication, integration strategies, and effective international recruitment practices.</p>
+            </div>
+            <button class="read-more-btn" id="readMoreBtn">Read More</button>
+        </div>
+    </section>
 
+    <section id="integration" class="integration-section">
+        <div class="integration-content">
+            <h2>German Culture: Visual Differences</h2>
+            <p class="integration-subtitle">Click through to explore unique aspects</p>
+            
+            <div class="carousel-container">
+                <div class="carousel-nav prev" onclick="changeSlide(-1)">‹</div>
+                <div class="carousel-nav next" onclick="changeSlide(1)">›</div>
 
-  <!-- About -->
-  <section id="about">
-    <h2>About Me</h2>
-    <div class="about-content">
-      <div class="about-text">
-        <p id="about-short">Hello, I'm Cyriac Panackal, a freelance consultant specializing in migration, integration, and international recruitment.</p>
-        <p id="about-full">I support individuals and organizations in navigating complex migration processes, adapting to new cultural environments, and attracting and retaining international talent.<br><br>Drawing on experience across both public and private sectors, I provide tailored consulting, workshops, and training focused on intercultural communication, integration strategies, and effective international recruitment practices.<br><br>My goal is to create smooth, inclusive transitions that benefit both people and organizations.</p>
-        <a href="javascript:void(0)" id="readMoreLink" onclick="toggleReadMore()">Read More</a>
-        <br>
-        <button class="btn-main" onclick="openForm()">Contact Me</button>
-      </div>
-      <div class="about-img">
-        <img src="profilepic.jpg" alt="About Me Image">
-      </div>
-    </div>
-  </section>
+                <!-- Slide 1: Windows -->
+                <div class="carousel-slide active">
+                    <div class="comparison-box">
+                        <div class="comparison-side germany">
+                            <div class="comparison-label germany">🇩🇪 German Windows</div>
+                            <div class="visual-container">
+                                <div class="window tilt">
+                                    <div class="window-frame">
+                                        <div class="window-glass">
+                                            <div class="window-divider vertical"></div>
+                                            <div class="window-divider horizontal"></div>
+                                            <div class="window-handle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comparison-side other">
+                            <div class="comparison-label">🌍 Other Countries</div>
+                            <div class="visual-container">
+                                <div class="window slide">
+                                    <div class="window-frame">
+                                        <div class="window-glass">
+                                            <div class="window-divider vertical"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-  <!-- Services -->
- <!-- Services -->
-<section id="services">
-  <h2>Services</h2>
+                <!-- Slide 2: Food -->
+                <div class="carousel-slide">
+                    <div class="comparison-box">
+                        <div class="comparison-side germany">
+                            <div class="comparison-label germany">🇩🇪 German Food</div>
+                            <div class="visual-container">
+                                <div class="food-container">
+                                    <div class="food-item">🥨</div>
+                                    <div class="food-item">🌭</div>
+                                    <div class="food-item">🍺</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comparison-side other">
+                            <div class="comparison-label">🌍 International Food</div>
+                            <div class="visual-container">
+                                <div class="food-container">
+                                    <div class="food-item">🍕</div>
+                                    <div class="food-item">🍣</div>
+                                    <div class="food-item">🌮</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-  <div class="service-card">
-    <div class="service-text">
-      <h3>Migration Consulting</h3>
-      <p>Guidance through visas, permits, and relocation with clear strategies for smooth migration processes.</p>
-    </div>
-    <div class="service-anim">
-      <!-- Person Head Nod Animation -->
-      <svg class="person-svg" viewBox="0 0 180 220">
-        <g class="head">
-          <circle cx="90" cy="74" r="30" fill="#f2d7c9" stroke="#e8bfa6"/>
-        </g>
-        <rect x="70" y="100" width="40" height="80" rx="10" fill="#f5f7ff" stroke="#d7e2ff"/>
-      </svg>
-    </div>
-  </div>
+                <!-- Slide 3: Bike Culture -->
+                <div class="carousel-slide">
+                    <div class="comparison-box">
+                        <div class="comparison-side germany">
+                            <div class="comparison-label germany">🇩🇪 Bike Lanes Everywhere</div>
+                            <div class="visual-container">
+                                <div>
+                                    <div class="bike">🚲</div>
+                                    <div class="bike-lane"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comparison-side other">
+                            <div class="comparison-label">🌍 Car-Dominated</div>
+                            <div class="visual-container">
+                                <div>
+                                    <div class="bike" style="font-size: 5rem;">🚗</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-  <div class="service-card">
-    <div class="service-text">
-      <h3>Integration Support</h3>
-      <p>Intercultural coaching, adaptation support, and workshops to build inclusive communities.</p>
-    </div>
-    <div class="service-anim">
-      <!-- German Tilt Window Animation -->
-      <svg class="window-svg" viewBox="0 0 120 160">
-        <rect x="5" y="5" width="110" height="150" rx="6" class="frame"/>
-        <g class="sash">
-          <rect x="15" y="15" width="90" height="130" rx="4" fill="#eef4ff" stroke="#bcd1ff"/>
-          <rect x="20" y="20" width="80" height="120" rx="2" class="glass"/>
-        </g>
-      </svg>
-    </div>
-  </div>
+                <!-- Slide 4: Recycling -->
+                <div class="carousel-slide">
+                    <div class="comparison-box">
+                        <div class="comparison-side germany">
+                            <div class="comparison-label germany">🇩🇪 Recycling System</div>
+                            <div class="visual-container">
+                                <div class="trash-bins">
+                                    <div class="trash-bin yellow">
+                                        <div class="trash-bin-lid"></div>
+                                        📦
+                                    </div>
+                                    <div class="trash-bin blue">
+                                        <div class="trash-bin-lid"></div>
+                                        📄
+                                    </div>
+                                    <div class="trash-bin brown">
+                                        <div class="trash-bin-lid"></div>
+                                        🍎
+                                    </div>
+                                    <div class="trash-bin black">
+                                        <div class="trash-bin-lid"></div>
+                                        🗑️
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comparison-side other">
+                            <div class="comparison-label">🌍 Simple Waste</div>
+                            <div class="visual-container">
+                                <div class="trash-bins">
+                                    <div class="trash-bin gray">
+                                        <div class="trash-bin-lid"></div>
+                                        🗑️
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-  <div class="service-card">
-    <div class="service-text">
-      <h3>International Recruitment</h3>
-      <p>Attract and onboard global talent with cross-cultural recruitment strategies and HR training.</p>
-    </div>
-    <div class="service-anim placeholder">
-      🌍
-    </div>
-  </div>
+                <div class="carousel-dots">
+                    <span class="dot active" onclick="goToSlide(0)"></span>
+                    <span class="dot" onclick="goToSlide(1)"></span>
+                    <span class="dot" onclick="goToSlide(2)"></span>
+                    <span class="dot" onclick="goToSlide(3)"></span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <div class="service-card">
-    <div class="service-text">
-      <h3>Training & Workshops</h3>
-      <p>Interactive sessions on intercultural communication tailored to diverse teams and organizations.</p>
-    </div>
-    <div class="service-anim placeholder">
-      🎓
-    </div>
-  </div>
-</section>
+    <section id="services" class="services">
+        <div class="services-content">
+            <h2>What I Offer</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-animation passport-animation">
+                        <div class="passport">🛂</div>
+                        <div class="visa-stamp">✅</div>
+                    </div>
+                    <h3>Migration Consulting</h3>
+                    <p>Guidance through visas, permits, and relocation with clear strategies for smooth migration processes.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-animation integration-animation">
+                        <div class="person-icon">👤</div>
+                        <div class="handshake">🤝</div>
+                        <div class="person-icon">👤</div>
+                    </div>
+                    <h3>Integration Support</h3>
+                    <p>Intercultural coaching, adaptation support, and workshops to build inclusive communities.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-animation recruitment-animation">
+                        <div class="globe">🌍</div>
+                        <div class="flying-person">✈️</div>
+                    </div>
+                    <h3>International Recruitment</h3>
+                    <p>Attract and onboard global talent with cross-cultural recruitment strategies and HR training.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-animation training-animation">
+                        <div class="speech-bubble">💬</div>
+                        <div class="speech-bubble">🗨️</div>
+                        <div class="speech-bubble">💭</div>
+                    </div>
+                    <h3>Intercultural Training</h3>
+                    <p>Interactive sessions on intercultural communication tailored to diverse teams and organizations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <section id="contact" class="contact">
+        <div class="contact-content">
+            <h2>Ready to Start?</h2>
+            <p>Let's create smooth, inclusive transitions that benefit both people and organizations.</p>
+            <a href="mailto:contact@panackal.de" class="cta-button">Get In Touch</a>
+        </div>
+    </section>
 
-  <!-- Contact -->
-  <section id="impressum">
-    <h2>Contact Me</h2>
-      Cyriac Panackal Consulting<br>
-      Address: Lütterzer Str. 2, 36041 Fulda<br>
-      Email: cyriac@panackal.de<br>
-      Contact: +49 1744705695<br><br>
+    <footer>
+        <p>&copy; 2024 Cyriac Panackal. All rights reserved.</p>
+    </footer>
 
-      Feel free to <a class="btn" onclick="openForm()">Contact</a>
-    </p>
-  </section>
+    <script>
+        // Navbar scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
 
-  <!-- Popup Form -->
-  <div id="contactForm" class="form-popup">
-    <div class="form-container">
-      <h3>Send me a message</h3>
-      <input type="text" id="name" placeholder="Your Name" required>
-      <input type="email" id="email" placeholder="Your Email" required>
-      <textarea id="message" placeholder="Your Message" required></textarea>
-      <button type="button" class="btn-main" onclick="sendEmail()">Send</button>
-      <button type="button" class="btn-cancel" onclick="closeForm()">Close</button>
-    </div>
-  </div>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Cyriac Panackal Consulting</p>
-    <p>
-      <a href="https://www.linkedin.com/in/cyriac-panackal-b62a0ab6/" target="_blank">LinkedIn</a> |
-      <a href="mailto:cyriac@panackal.de">Email</a>
-    </p>
-  </footer>
-
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-  <script>
-    (function() { emailjs.init("ITXZhTxzoNhcgBkSe"); })();
-
-    function openForm() {
-      document.getElementById("contactForm").classList.add("show");
-    }
-    function closeForm() {
-      document.getElementById("contactForm").classList.remove("show");
-    }
-
-    function toggleMenu() {
-      document.getElementById("navLinks").classList.toggle("show");
-    }
-
-    function sendEmail() {
-      var name = document.getElementById("name").value;
-      var email = document.getElementById("email").value;
-      var message = document.getElementById("message").value;
-
-      if(!name || !email || !message) {
-        alert("Please fill all fields");
-        return;
-      }
-
-      var params = { from_name: name, from_email: email, message: message };
-
-      emailjs.send("service_sysbf2f", "template_cwxhl09", params).then(function() {
-        alert("Message sent successfully!");
-        closeForm();
-        document.getElementById("name").value = "";
-        document.getElementById("email").value = "";
-        document.getElementById("message").value = "";
-      }, function(error) {
-        alert("Failed to send message. Please try again.");
-        console.log(error);
-      });
-    }
-
-    function revealSections() {
-      const sections = document.querySelectorAll("section");
-      const windowHeight = window.innerHeight;
-      sections.forEach(section => {
-        if(section.getBoundingClientRect().top < windowHeight - 100) {
-          section.classList.add("show");
+        // Read More button functionality
+        const readMoreBtn = document.getElementById('readMoreBtn');
+        const aboutExpand = document.getElementById('aboutExpand');
+        
+        if (readMoreBtn && aboutExpand) {
+            readMoreBtn.addEventListener('click', function() {
+                aboutExpand.classList.toggle('expanded');
+                if (aboutExpand.classList.contains('expanded')) {
+                    readMoreBtn.textContent = 'Read Less';
+                } else {
+                    readMoreBtn.textContent = 'Read More';
+                }
+            });
         }
-      });
-    }
 
-    function toggleReadMore() {
-      const fullText = document.getElementById("about-full");
-      const link = document.getElementById("readMoreLink");
+        // Integration animation hover effects
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.dot');
 
-      if (fullText.style.display === "none" || fullText.style.display === "") {
-        fullText.style.display = "block";
-        link.innerText = "Read Less";
-      } else {
-        fullText.style.display = "none";
-        link.innerText = "Read More";
-      }
-    }
+        function showSlide(n) {
+            if (n >= slides.length) currentSlide = 0;
+            if (n < 0) currentSlide = slides.length - 1;
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
 
-    window.addEventListener("scroll", revealSections);
-    window.addEventListener("load", revealSections);
-  </script>
+        function changeSlide(direction) {
+            currentSlide += direction;
+            showSlide(currentSlide);
+        }
+
+        function goToSlide(n) {
+            currentSlide = n;
+            showSlide(currentSlide);
+        }
+
+        // Auto-advance slides every 5 seconds
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+
+        cultureItems.forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                const infoKey = this.getAttribute('data-info');
+                const info = cultureInfo[infoKey];
+                
+                if (info) {
+                    popupTitle.textContent = info.title;
+                    popupText.textContent = info.text;
+                    infoPopup.classList.add('active');
+                }
+            });
+
+            item.addEventListener('mouseleave', function() {
+                setTimeout(() => {
+                    if (!infoPopup.matches(':hover')) {
+                        infoPopup.classList.remove('active');
+                    }
+                }, 100);
+            });
+        });
+
+        infoPopup.addEventListener('mouseleave', function() {
+            this.classList.remove('active');
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
 </body>
 </html>
