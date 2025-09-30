@@ -74,6 +74,34 @@
             background-clip: text;
         }
 
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #2d3748;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
         .nav-links {
             display: flex;
             gap: 2rem;
@@ -445,12 +473,12 @@
         }
 
         .window.slide .window-glass {
-            animation: slideWindow 4s ease-in-out infinite;
+            animation: none;
         }
 
-        @keyframes slideWindow {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-30px); }
+        /* Only vertical divider for other countries */
+        .window.slide .window-divider.horizontal {
+            display: none;
         }
 
         /* Food Animation */
@@ -885,13 +913,69 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
             .nav-links {
-                gap: 1rem;
-                font-size: 0.9rem;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                max-width: 300px;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 5rem 2rem;
+                gap: 2rem;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
             }
 
             .services-grid {
                 grid-template-columns: 1fr;
+            }
+
+            /* Disable complex animations on mobile */
+            .window.tilt .window-glass,
+            .window.slide .window-glass {
+                animation: none;
+            }
+
+            .flying-person {
+                animation: none;
+                display: none;
+            }
+
+            .globe {
+                animation: globeRotate 10s linear infinite;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
             }
         }
 
@@ -911,12 +995,17 @@
 
     <nav id="nav">
         <div class="nav-content">
-            <div class="logo">Cyriac Panackal</div>
-            <ul class="nav-links">
+            <div class="logo">C. Panackal</div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#integration">Integration</a></li>
                 <li><a href="#services">Services</a></li>
+                <li><a href="#integration">Culture</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -944,6 +1033,48 @@
                 <p>Drawing on experience across both public and private sectors, I provide tailored consulting, workshops, and training focused on intercultural communication, integration strategies, and effective international recruitment practices.</p>
             </div>
             <button class="read-more-btn" id="readMoreBtn">Read More</button>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="services-content">
+            <h2>What I Offer</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-animation passport-animation">
+                        <div class="passport">🛂</div>
+                        <div class="visa-stamp">✅</div>
+                    </div>
+                    <h3>Migration Consulting</h3>
+                    <p>Guidance through visas, permits, and relocation with clear strategies for smooth migration processes.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-animation integration-animation">
+                        <div class="person-icon">👤</div>
+                        <div class="handshake">🤝</div>
+                        <div class="person-icon">👤</div>
+                    </div>
+                    <h3>Integration Support</h3>
+                    <p>Intercultural coaching, adaptation support, and workshops to build inclusive communities.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-animation recruitment-animation">
+                        <div class="globe">🌍</div>
+                        <div class="flying-person">✈️</div>
+                    </div>
+                    <h3>International Recruitment</h3>
+                    <p>Attract and onboard global talent with cross-cultural recruitment strategies and HR training.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-animation training-animation">
+                        <div class="speech-bubble">💬</div>
+                        <div class="speech-bubble">🗨️</div>
+                        <div class="speech-bubble">💭</div>
+                    </div>
+                    <h3>Intercultural Training</h3>
+                    <p>Interactive sessions on intercultural communication tailored to diverse teams and organizations.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -980,6 +1111,7 @@
                                     <div class="window-frame">
                                         <div class="window-glass">
                                             <div class="window-divider vertical"></div>
+                                            <div class="window-divider horizontal"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -1077,11 +1209,57 @@
                     </div>
                 </div>
 
+                <!-- Slide 5: Head Gestures -->
+                <div class="carousel-slide">
+                    <div class="comparison-box">
+                        <div class="comparison-side germany">
+                            <div class="comparison-label germany">🇩🇪 Clear Gestures</div>
+                            <div class="visual-container">
+                                <div style="display: flex; flex-direction: column; gap: 2.5rem; align-items: center;">
+                                    <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+                                        <div class="head-nod">
+                                            <div class="head-icon">
+                                                <div class="head-mouth smile"></div>
+                                            </div>
+                                        </div>
+                                        <div style="font-size: 1.3rem; font-weight: bold; color: #5b8def;">↕️ JA</div>
+                                    </div>
+                                    <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+                                        <div class="head-shake">
+                                            <div class="head-icon">
+                                                <div class="head-mouth neutral"></div>
+                                            </div>
+                                        </div>
+                                        <div style="font-size: 1.3rem; font-weight: bold; color: #5b8def;">↔️ NEIN</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comparison-side other">
+                            <div class="comparison-label">🌏 Asian Head Wobble</div>
+                            <div class="visual-container">
+                                <div style="display: flex; flex-direction: column; gap: 1.5rem; align-items: center; justify-content: center; height: 100%;">
+                                    <div class="head-wobble">
+                                        <div class="head-icon">
+                                            <div class="head-mouth smile"></div>
+                                        </div>
+                                    </div>
+                                    <div style="font-size: 1.2rem; color: #5a6c7d; text-align: center; font-weight: 600;">
+                                        ↗️↙️ Sideways Tilt<br>
+                                        <span style="font-size: 0.9rem;">(Yes, Maybe, Understanding)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="carousel-dots">
                     <span class="dot active" onclick="goToSlide(0)"></span>
                     <span class="dot" onclick="goToSlide(1)"></span>
                     <span class="dot" onclick="goToSlide(2)"></span>
                     <span class="dot" onclick="goToSlide(3)"></span>
+                    <span class="dot" onclick="goToSlide(4)"></span>
                 </div>
             </div>
         </div>
@@ -1152,6 +1330,23 @@
             }
         });
 
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1206,11 +1401,6 @@
             currentSlide = n;
             showSlide(currentSlide);
         }
-
-        // Auto-advance slides every 5 seconds
-        setInterval(() => {
-            changeSlide(1);
-        }, 5000);
 
         cultureItems.forEach(item => {
             item.addEventListener('mouseenter', function() {
