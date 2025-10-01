@@ -1345,6 +1345,7 @@
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
     <script>
+        (function() { emailjs.init("ITXZhTxzoNhcgBkSe"); })();
         // Navbar scroll effect
         const nav = document.getElementById('nav');
         window.addEventListener('scroll', () => {
@@ -1473,7 +1474,6 @@
             card.style.transition = 'all 0.6s ease';
             observer.observe(card);
         });
-         (function() { emailjs.init("ITXZhTxzoNhcgBkSe"); })();
 
     function openForm() {
       document.getElementById("contactForm").classList.add("show");
