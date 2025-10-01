@@ -1480,6 +1480,28 @@
     function closeForm() {
       document.getElementById("contactForm").classList.remove("show");
     }
+    function sendEmail() {
+      var name = document.getElementById("name").value;
+      var email = document.getElementById("email").value;
+      var message = document.getElementById("message").value;
+
+      if(!name || !email || !message) {
+        alert("Please fill all fields");
+        return;
+      }
+
+      var params = { from_name: name, from_email: email, message: message };
+
+      emailjs.send("service_sysbf2f", "template_cwxhl09", params).then(function() {
+        closeForm();
+        document.getElementById("name").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("message").value = "";
+      }, function(error) {
+        console.log(error);
+      });
+    }
+
 
 
     </script>
