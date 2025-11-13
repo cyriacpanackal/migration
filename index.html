@@ -1004,6 +1004,57 @@
       transform: translateY(-2px);
       box-shadow: 0 4px 14px rgba(0,0,0,0.2);
     }
+
+        /* HERO: text left, image fixed on the right (responsive) */
+.hero-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Left column: existing text uses the remaining space */
+.hero-text {
+  flex: 1 1 60%;
+  min-width: 280px;
+  text-align: left;
+}
+
+/* Right column: fixed-width image that sits to the right */
+.hero-photo {
+  flex: 0 0 420px; /* fixed width for right-side image */
+  max-width: 42%;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(45,55,72,0.12);
+  background: linear-gradient(180deg, #f5f8ff, #eaf3ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ensure the image fills the container and is cropped */
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 45% 45%; /* tweak if needed to fine-tune crop */
+  display: block;
+}
+
+/* Responsive: stack on narrow screens (image below the text or above, based on order) */
+@media (max-width: 900px) {
+  .hero-grid {
+    flex-direction: column;
+    gap: 1.25rem;
+    text-align: center;
+  }
+  .hero-text { width: 100%; text-align: center; }
+  .hero-photo { max-width: 90%; width: 320px; flex: 0 0 auto; }
+}
     </style>
 </head>
 <body>
@@ -1028,11 +1079,16 @@
     </nav>
 
     <section id="home" class="hero">
-        <div class="hero-content">
-            <h1 class="floating">Connecting People<br>and Cultures</h1>
-            <p class="subtitle">Migration | Integration | International Recruitment</p>
-            <a onclick="openForm()" class="cta-button">Let's Connect</a>
-        </div>
+          <div class="hero-content">
+            <div class="hero-grid">
+                <h1 class="floating">Connecting People<br>and Cultures</h1>
+                <p class="subtitle">Migration | Integration | International Recruitment</p>
+                <a onclick="openForm()" class="cta-button">Let's Connect</a>
+            </div>
+             <div class="hero-photo" aria-hidden="false">
+        <img src="assets/home-photo.jpg" alt="Cyriac Panackal presenting" loading="lazy">
+      </div>
+    </div>  
     </section>
 
     <section id="about" class="about">
